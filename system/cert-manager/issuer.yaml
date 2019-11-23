@@ -9,9 +9,8 @@ spec:
     server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       name: letsencrypt-k3s-issuer-secret
-    dns01:
-      providers:
-      - name: digitalocean
+    solvers:
+    - dns01:
         digitalocean:
           tokenSecretRef:
             name: digitalocean-dns
