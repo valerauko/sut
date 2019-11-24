@@ -72,9 +72,9 @@ kubernetes:
   # labelSelector:
   # ingressClass:
   ingressEndpoint:
-    hostname: "traefik"
+  #   hostname: "traefik"
   #   ip: "127.0.0.1"
-  #   publishedService: "namespace/servicename"
+    publishedService: "kube-system/traefik"
   #   useDefaultPublishedService: false
 
 fileBackend: ""
