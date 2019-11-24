@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: monitoring
+  namespace: argo
+spec:
+  description: Kitsune Kubernetes monitoring bits
+
+  sourceRepos:
+  - '*'
+
+  destinations:
+  - namespace: monitoring
+    server: https://kubernetes.default.svc
