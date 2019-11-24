@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: traefik
+  namespace: argo
+spec:
+  project: system
+
+  source:
+    repoURL: https://github.com/valerauko/sut.git
+    targetRevision: HEAD
+    path: system/traefik
+
+    helm:
+      releaseName: traefik
+
+      valueFiles:
+      - values.yaml
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kube-system
+
+  syncPolicy:
+    automated:
+      selfHeal: true
