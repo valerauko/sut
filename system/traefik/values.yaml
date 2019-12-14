@@ -376,7 +376,10 @@ deployment:
   # labels to add to the pod container metadata
   # podLabels:
   #   key: value
-  # podAnnotations:
+  podAnnotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/path: "/metrics"
+    prometheus.io/port: "9100"
   #   key: value
   hostPort:
     httpEnabled: false
