@@ -8,4 +8,4 @@ resources:
 - ingress.yaml
 images:
 - name: alexmt/rollouts-demo
-  newTag: yellow
+  newName: valerauko/books
