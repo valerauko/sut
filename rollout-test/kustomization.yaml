@@ -7,6 +7,5 @@ resources:
 - service.yaml
 - ingress.yaml
 images:
-- name: strm/helloworld-http
-  newName: alexmt/rollouts-demo
-  newTag: green
+- name: alexmt/rollouts-demo
+  newName: strm/helloworld-http
