@@ -7,4 +7,4 @@ resources:
 - ingress.yaml
 images:
 - name: alexmt/rollouts-demo
-  newTag: blue
+  newTag: yellow
