@@ -9,3 +9,4 @@ resources:
 images:
 - name: alexmt/rollouts-demo
   newName: valerauko/books
+  newTag: 0.1.4
