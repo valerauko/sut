@@ -11,10 +11,12 @@ spec:
     successCondition: result[0] > 0.90
     provider:
       prometheus:
-        address: http://prometheus-server.monitoring.svc.cluster.local:9090
+        address: http://prometheus-server.monitoring.svc.cluster.local
         query: >+
           sum(
-            rate(traefik_backend_requests_total{backend="{{args.backend}}",code!~"[4-5].*"}[20s]))
-            /
-            sum(rate(traefik_backend_requests_total{backend="{{args.backend}}"}[20s])
+            rate(traefik_backend_requests_total{backend="{{args.backend}}",code!~"[45].."}[30s])
+          )
+          /
+          sum(
+            rate(traefik_backend_requests_total{backend="{{args.backend}}"}[30s])
           )
