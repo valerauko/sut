@@ -13,8 +13,6 @@ spec:
       app: rollouts-demo
   template:
     metadata:
-      annotations:
-        prometheus.io/scrape: 'true'
       labels:
         app: rollouts-demo
     spec:
