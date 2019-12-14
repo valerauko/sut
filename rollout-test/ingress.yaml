@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: rollouts-demo
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+spec:
+  rules:
+  - host: rollout-test.kitsune.social
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: rollouts-demo
+          servicePort: 80
+  tls:
+  - hosts:
+    - rollout-test.kitsune.social
