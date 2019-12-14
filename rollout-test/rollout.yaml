@@ -33,11 +33,11 @@ spec:
               port: http
   strategy:
     canary:
-      # analysis:
-      #   templateName: success-rate
-      #   args:
-      #   - name: backend
-      #     value: "rollout-test.kitsune.social/"
+      analysis:
+        templateName: success-rate
+        args:
+        - name: backend
+          value: "rollout-test.kitsune.social/"
       steps:
       - setWeight: 20
       - pause:
