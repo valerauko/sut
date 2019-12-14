@@ -34,7 +34,10 @@ spec:
               path: /
               port: http
   strategy:
-    canary:
-      steps:
-      - setWeight: 20
-      - pause: {}
+    blueGreen:
+      activeService: rollouts-demo
+      previewService: rollouts-demo-preview
+#      canary:
+#        steps:
+#        - setWeight: 20
+#        - pause: {}
