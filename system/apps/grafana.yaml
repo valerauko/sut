@@ -26,6 +26,7 @@ spec:
                 - admin.kitsune.social
         persistence:
           enabled: true
+          storageClassName: do-block-storage
         plugins:
           - grafana-piechart-panel
 
