@@ -8,7 +8,7 @@ spec:
 
   source:
     repoURL: https://github.com/valerauko/sut.git
-    targetRevision: 9d30fbbf05f3b7dc5d00ac2fda648506644d07c6
+    targetRevision: f97f2cc838a58f0a6b7dbaf2735258642677c6cd
     path: system/manifests
 
     directory:
