@@ -8,7 +8,7 @@ argo-cd:
           prometheus.io/port: "8082"
   server:
     extraArgs:
-      insecure: "true"
+      - insecure: "true"
     metrics:
       enabled: true
       service:
