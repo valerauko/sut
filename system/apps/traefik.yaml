@@ -14,7 +14,7 @@ spec:
     helm:
       releaseName: traefik
 
-      values:
+      values: |
         kubernetes:
           ingressEndpoint:
             publishedService: "kube-system/traefik"

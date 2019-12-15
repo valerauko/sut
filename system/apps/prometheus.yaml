@@ -14,7 +14,7 @@ spec:
     helm:
       releaseName: prometheus
 
-      values:
+      values: |
         global:
           scrape_interval: 15s
         networkPolicy:

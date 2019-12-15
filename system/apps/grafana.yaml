@@ -14,7 +14,7 @@ spec:
     helm:
       releaseName: grafana
 
-      values:
+      values: |
         ingress:
           enabled: true
           annotations:
