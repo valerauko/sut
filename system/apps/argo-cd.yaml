@@ -7,50 +7,12 @@ spec:
   project: system
 
   source:
-    repoURL: https://github.com/argoproj/argo-helm.git
-    targetRevision: 3e1faba98b6865eaf787d1fd289f16faf19a860a
-    path: charts/argo-cd
+    repoURL: https://github.com/valerauko/sut
+    targetRevision: 49888e6f125427bf1a5c6f5b691a32d2cd2a8813
+    path: system/argo
 
     helm:
       releaseName: argo-cd
-
-      values: |
-        controller:
-          metrics:
-            enabled: true
-            service:
-              annotations:
-                prometheus.io/scrape: "true"
-                prometheus.io/port: "8082"
-        server:
-          extraArgs:
-            insecure: "true"
-          metrics:
-            enabled: true
-            service:
-              annotations:
-                prometheus.io/scrape: "true"
-                prometheus.io/port: "8083"
-          ingress:
-            enabled: true
-            annotations:
-              kubernetes.io/ingress.class: "traefik"
-              ingress.kubernetes.io/protocol: "http"
-            hosts:
-              - argocd.kitsune.social
-            tls:
-              - hosts:
-                  - argocd.kitsune.social
-          config:
-            url: https://argocd.kitsune.social
-        repoServer:
-          metrics:
-            enabled: true
-            service:
-              annotations:
-                prometheus.io/scrape: "true"
-                prometheus.io/port: "8084"
-
 
   destination:
     server: https://kubernetes.default.svc
