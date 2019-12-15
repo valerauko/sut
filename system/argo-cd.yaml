@@ -1,0 +1,61 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo-cd
+  namespace: argo
+spec:
+  project: system
+
+  source:
+    repoURL: https://github.com/valerauko/sut.git
+    targetRevision: HEAD
+    path: system/argo-cd
+
+    helm:
+      releaseName: argo-cd
+
+      values:
+        controller:
+          metrics:
+            enabled: true
+            service:
+              annotations:
+                prometheus.io/scrape: "true"
+                prometheus.io/port: "8082"
+        server:
+          extraArgs:
+            insecure: "true"
+          metrics:
+            enabled: true
+            service:
+              annotations:
+                prometheus.io/scrape: "true"
+                prometheus.io/port: "8083"
+          ingress:
+            enabled: true
+            annotations:
+              kubernetes.io/ingress.class: "traefik"
+              ingress.kubernetes.io/protocol: "http"
+            hosts:
+              - argocd.kitsune.social
+            tls:
+              - hosts:
+                  - argocd.kitsune.social
+          config:
+            url: https://argocd.kitsune.social
+        repoServer:
+      metrics:
+        enabled: true
+        service:
+          annotations:
+            prometheus.io/scrape: "true"
+            prometheus.io/port: "8084"
+
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argo
+
+  syncPolicy:
+    automated:
+      selfHeal: true
