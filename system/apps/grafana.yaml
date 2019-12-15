@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: grafana
+  namespace: argo
+spec:
+  project: monitoring
+
+  source:
+    repoURL: https://github.com/helm/charts.git
+    targetRevision: cd39538c580c587917f42fb410ed4cfa8f3e503a
+    path: stable/grafana
+
+    helm:
+      releaseName: grafana
+
+      values: |
+        ingress:
+          enabled: true
+          annotations:
+            kubernetes.io/ingress.class: traefik
+          hosts:
+            - admin.kitsune.social
+          tls:
+            - hosts:
+                - admin.kitsune.social
+        persistence:
+          enabled: true
+        plugins:
+          - grafana-piechart-panel
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: monitoring
+
+  syncPolicy:
+    automated:
+      selfHeal: true

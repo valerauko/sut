@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus
+  namespace: argo
+spec:
+  project: monitoring
+
+  source:
+    repoURL: https://github.com/helm/charts.git
+    targetRevision: 2f46f4fa4f7a995381f5add685bb762265b9ff15
+    path: stable/prometheus
+
+    helm:
+      releaseName: prometheus
+
+      values: |
+        global:
+          scrape_interval: 15s
+        networkPolicy:
+          enabled: true
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: monitoring
+
+  syncPolicy:
+    automated:
+      selfHeal: true

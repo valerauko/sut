@@ -1,0 +1,58 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: traefik
+  namespace: argo
+spec:
+  project: system
+
+  source:
+    repoURL: https://github.com/helm/charts.git
+    targetRevision: 6a95c28a25c0152b9bc27e393f05fc3b198e7281
+    path: stable/traefik
+
+    helm:
+      releaseName: traefik
+
+      values: |
+        kubernetes:
+          ingressEndpoint:
+            publishedService: "kube-system/traefik"
+        ssl:
+          enabled: true
+          enforced: true
+        acme:
+          enabled: true
+          email: valerauko@gmail.com
+          staging: false
+          logging: true
+          domains:
+            enabled: true
+            domainsList:
+              - main: "*.kitsune.social"
+              - sans:
+                - "kitsune.social"
+          challengeType: tls-alpn-01
+          dnsProvider:
+            name: digitalocean
+            existingSecretName: digitalocean-dns
+          accessLogs:
+            enabled: true
+          rbac:
+            enabled: true
+          metrics:
+            prometheus:
+              enabled: true
+          deployment:
+            podAnnotations:
+              prometheus.io/scrape: "true"
+              prometheus.io/path: "/metrics"
+              prometheus.io/port: "9100"
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kube-system
+
+  syncPolicy:
+    automated:
+      selfHeal: true
