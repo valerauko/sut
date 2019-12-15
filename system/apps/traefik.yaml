@@ -32,7 +32,7 @@ spec:
               - main: "*.kitsune.social"
               - sans:
                 - "kitsune.social"
-          challengeType: tls-alpn-01
+          challengeType: dns-01
           dnsProvider:
             name: digitalocean
             existingSecretName: digitalocean-dns
