@@ -214,7 +214,7 @@ argo-cd:
     # extraArgs: []
     #   - insecure: true
     extraArgs:
-      - insecure: true
+      insecure: true
 
     ## Argo server log level
     logLevel: info
