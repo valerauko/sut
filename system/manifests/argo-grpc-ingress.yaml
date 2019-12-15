@@ -11,7 +11,7 @@ spec:
   - http:
       paths:
       - backend:
-          serviceName: argo-cd-argocd-server
+          serviceName: argocd-server
           servicePort: https
     host: grpc.argocd.kitsune.social
   tls:
