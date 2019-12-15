@@ -36,18 +36,18 @@ spec:
           dnsProvider:
             name: digitalocean
             existingSecretName: digitalocean-dns
-          accessLogs:
+        accessLogs:
+          enabled: true
+        rbac:
+          enabled: true
+        metrics:
+          prometheus:
             enabled: true
-          rbac:
-            enabled: true
-          metrics:
-            prometheus:
-              enabled: true
-          deployment:
-            podAnnotations:
-              prometheus.io/scrape: "true"
-              prometheus.io/path: "/metrics"
-              prometheus.io/port: "9100"
+        deployment:
+          podAnnotations:
+            prometheus.io/scrape: "true"
+            prometheus.io/path: "/metrics"
+            prometheus.io/port: "9100"
 
   destination:
     server: https://kubernetes.default.svc
