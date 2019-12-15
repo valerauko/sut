@@ -8,7 +8,7 @@ spec:
 
   source:
     repoURL: https://github.com/valerauko/sut
-    targetRevision: 49888e6f125427bf1a5c6f5b691a32d2cd2a8813
+    targetRevision: c0661ecf0cb824454c46224609688cc4fcf68abe
     path: system/argo
 
     helm:
