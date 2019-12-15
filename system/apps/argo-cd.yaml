@@ -44,12 +44,12 @@ spec:
           config:
             url: https://argocd.kitsune.social
         repoServer:
-      metrics:
-        enabled: true
-        service:
-          annotations:
-            prometheus.io/scrape: "true"
-            prometheus.io/port: "8084"
+          metrics:
+            enabled: true
+            service:
+              annotations:
+                prometheus.io/scrape: "true"
+                prometheus.io/port: "8084"
 
 
   destination:
