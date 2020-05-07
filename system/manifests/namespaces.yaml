@@ -4,3 +4,8 @@ metadata:
   name: argo-cd
 
 ---
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: monitoring
