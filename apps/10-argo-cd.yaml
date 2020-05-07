@@ -15,7 +15,7 @@ spec:
     helm:
       releaseName: argo-cd
       valueFiles:
-      - "01-argo-cd-values.yaml"
+      - "10-argo-cd-values.yaml"
 
   destination:
     server: https://kubernetes.default.svc
