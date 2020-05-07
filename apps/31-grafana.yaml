@@ -2,13 +2,14 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: grafana
-  namespace: argo
+  namespace: argo-cd
+  annotations:
+    argocd.argoproj.io/sync-wave: "31"
 spec:
-  project: monitoring
-
+  project: default
   source:
     repoURL: https://github.com/helm/charts.git
-    targetRevision: cd39538c580c587917f42fb410ed4cfa8f3e503a
+    targetRevision: master
     path: stable/grafana
 
     helm:

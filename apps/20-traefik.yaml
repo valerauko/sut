@@ -2,13 +2,14 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: traefik
-  namespace: argo
+  namespace: argo-cd
+  annotations:
+    argocd.argoproj.io/sync-wave: "20"
 spec:
-  project: system
-
+  project: default
   source:
     repoURL: https://github.com/helm/charts.git
-    targetRevision: 6a95c28a25c0152b9bc27e393f05fc3b198e7281
+    targetRevision: master
     path: stable/traefik
 
     helm:
@@ -35,7 +36,7 @@ spec:
           challengeType: dns-01
           dnsProvider:
             name: digitalocean
-            existingSecretName: digitalocean-dns
+            existingSecretName: host-api-token
         accessLogs:
           enabled: true
         rbac:

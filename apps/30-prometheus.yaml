@@ -2,13 +2,14 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: prometheus
-  namespace: argo
+  namespace: argo-cd
+  annotations:
+    argocd.argoproj.io/sync-wave: "30"
 spec:
-  project: monitoring
-
+  project: default
   source:
     repoURL: https://github.com/helm/charts.git
-    targetRevision: 2f46f4fa4f7a995381f5add685bb762265b9ff15
+    targetRevision: master
     path: stable/prometheus
 
     helm:
@@ -16,7 +17,7 @@ spec:
 
       values: |
         global:
-          scrape_interval: 15s
+          scrape_interval: 10s
         networkPolicy:
           enabled: true
 

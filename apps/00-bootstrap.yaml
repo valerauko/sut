@@ -2,14 +2,15 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: bootstrap
-  namespace: argo
+  namespace: argo-cd
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
 spec:
   project: default
-
   source:
     repoURL: https://github.com/valerauko/sut.git
-    targetRevision: HEAD
-    path: system/apps
+    targetRevision: master
+    path: apps
 
     directory:
       recurse: true
