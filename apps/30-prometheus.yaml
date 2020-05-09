@@ -21,6 +21,9 @@ spec:
         server:
           statefulSet:
             enabled: true
+        alertmanager:
+          statefulSet:
+            enabled: true
         networkPolicy:
           enabled: true
 
