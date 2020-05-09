@@ -18,6 +18,9 @@ spec:
       values: |
         global:
           scrape_interval: 10s
+        server:
+          statefulSet:
+            enabled: true
         networkPolicy:
           enabled: true
 
