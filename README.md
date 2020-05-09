@@ -2,6 +2,10 @@
 
 A cluster setup with Traefik, ArgoCD and Prometheus + Grafana.
 
+## Name
+
+Sut's a tail-less fox in [Fekete István](https://en.wikipedia.org/wiki/Istv%C3%A1n_Fekete)'s [Vuk](https://en.wikipedia.org/wiki/Vuk_(novel).
+
 ## Customization
 
 Stuff that should be changed to your values:
