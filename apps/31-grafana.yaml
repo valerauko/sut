@@ -16,15 +16,6 @@ spec:
       releaseName: grafana
 
       values: |
-        ingress:
-          enabled: true
-          annotations:
-            kubernetes.io/ingress.class: traefik
-          hosts:
-            - grafana.dekiru.tech
-          tls:
-            - hosts:
-                - grafana.dekiru.tech
         persistence:
           enabled: true
           type: statefulset
