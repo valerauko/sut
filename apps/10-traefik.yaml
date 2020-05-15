@@ -40,6 +40,8 @@ spec:
             existingSecretName: host-api-token
         accessLogs:
           enabled: true
+        dashboard:
+          enabled: true
         rbac:
           enabled: true
         metrics:
