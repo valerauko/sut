@@ -42,6 +42,7 @@ spec:
           enabled: true
         dashboard:
           enabled: true
+          domain: traefik.dekiru.tech
         rbac:
           enabled: true
         metrics:
