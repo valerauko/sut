@@ -31,6 +31,18 @@ spec:
               annotations:
                 prometheus.io/scrape: "true"
                 prometheus.io/port: "8083"
+          ingress:
+            enabled: true
+            annotations:
+              kubernetes.io/ingress.class: traefik
+              ingress.kubernetes.io/protocol: http
+            hosts:
+            - argo.dekiru.tech
+            tls:
+            - hosts:
+              - argo.dekiru.tech
+          config:
+            url: https://argo.dekiru.tech
         repoServer:
           metrics:
             enabled: true
