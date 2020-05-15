@@ -28,6 +28,7 @@ spec:
         persistence:
           enabled: true
           type: statefulset
+          storageClassName: local-path
         plugins:
           - grafana-piechart-panel
 
