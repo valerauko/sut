@@ -9,7 +9,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/valerauko/sut.git
-    targetRevision: master
+    targetRevision: linode
     path: apps
 
     directory:
