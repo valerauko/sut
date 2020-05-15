@@ -35,7 +35,8 @@ spec:
                 - "dekiru.tech"
           challengeType: dns-01
           dnsProvider:
-            name: "linodev4"
+            name: linodev4
+            linodev4: { LINODE_TOKEN: '' } # chart bug fix hack
             existingSecretName: host-api-token
         accessLogs:
           enabled: true
