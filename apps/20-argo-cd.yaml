@@ -6,7 +6,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "20"
 spec:
-  project: default
+  project: system
   source:
     repoURL: https://github.com/argoproj/argo-helm.git
     targetRevision: master
@@ -37,12 +37,12 @@ spec:
               kubernetes.io/ingress.class: traefik
               ingress.kubernetes.io/protocol: http
             hosts:
-            - argocd.kitsune.social
+            - argo.dekiru.tech
             tls:
             - hosts:
-              - argocd.kitsune.social
+              - argo.dekiru.tech
           config:
-            url: https://argocd.kitsune.social
+            url: https://argo.dekiru.tech
         repoServer:
           metrics:
             enabled: true

@@ -6,7 +6,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "31"
 spec:
-  project: default
+  project: monitoring
   source:
     repoURL: https://github.com/helm/charts.git
     targetRevision: master
@@ -21,14 +21,13 @@ spec:
           annotations:
             kubernetes.io/ingress.class: traefik
           hosts:
-            - admin.kitsune.social
+            - grafana.dekiru.tech
           tls:
             - hosts:
-                - admin.kitsune.social
+                - grafana.dekiru.tech
         persistence:
           enabled: true
           type: statefulset
-          storageClassName: do-block-storage
         plugins:
           - grafana-piechart-panel
 

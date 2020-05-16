@@ -1,23 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: sealed-secrets
+  name: yureta
   namespace: argo-cd
   annotations:
-    argocd.argoproj.io/sync-wave: "11"
+    argocd.argoproj.io/sync-wave: "50"
 spec:
-  project: system
+  project: default
   source:
-    repoURL: https://github.com/helm/charts.git
+    repoURL: https://github.com/valerauko/dekiru.git
     targetRevision: master
-    path: stable/sealed-secrets
-
-    helm:
-      releaseName: sealed-secrets
+    path: quake/manifests
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: kube-system
+    namespace: default
 
   syncPolicy:
     automated:

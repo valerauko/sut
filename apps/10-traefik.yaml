@@ -6,7 +6,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "10"
 spec:
-  project: default
+  project: system
   source:
     repoURL: https://github.com/helm/charts.git
     targetRevision: master
@@ -30,15 +30,19 @@ spec:
           domains:
             enabled: true
             domainsList:
-              - main: "*.kitsune.social"
+              - main: "*.dekiru.tech"
               - sans:
-                - "kitsune.social"
+                - "dekiru.tech"
           challengeType: dns-01
           dnsProvider:
-            name: digitalocean
+            name: linodev4
+            linodev4: { LINODE_TOKEN: '' } # chart bug fix hack
             existingSecretName: host-api-token
         accessLogs:
           enabled: true
+        dashboard:
+          enabled: true
+          domain: traefik.dekiru.tech
         rbac:
           enabled: true
         metrics:
