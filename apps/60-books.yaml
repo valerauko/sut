@@ -9,7 +9,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/valerauko/books.git
-    targetRevision: master
+    targetRevision: work/cluster
     path: manifests
 
   destination:
