@@ -6,7 +6,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "30"
 spec:
-  project: default
+  project: monitoring
   source:
     repoURL: https://github.com/helm/charts.git
     targetRevision: master

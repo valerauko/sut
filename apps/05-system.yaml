@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: system
+  namespace: argo-cd
+spec:
+  description: System stuff
+
+  sourceRepos:
+  - '*'
+
+  destinations:
+  - namespace: kube-system
+    server: https://kubernetes.default.svc
+  - namespace: argo-cd
+    server: https://kubernetes.default.svc

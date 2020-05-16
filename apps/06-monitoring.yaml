@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: monitoring
+  namespace: argo-cd
+spec:
+  description: Monitoring stuff
+
+  sourceRepos:
+  - '*'
+
+  destinations:
+  - namespace: monitoring
+    server: https://kubernetes.default.svc
