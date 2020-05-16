@@ -6,10 +6,10 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "0"
 spec:
-  project: default
+  project: system
   source:
     repoURL: https://github.com/valerauko/sut.git
-    targetRevision: linode
+    targetRevision: master
     path: apps
 
     directory:
