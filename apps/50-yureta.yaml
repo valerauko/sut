@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/valerauko/dekiru.git
     targetRevision: master
-    path: quake
+    path: quake/manifests
 
   destination:
     server: https://kubernetes.default.svc
