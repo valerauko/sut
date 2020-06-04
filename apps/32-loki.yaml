@@ -8,9 +8,9 @@ metadata:
 spec:
   project: monitoring
   source:
-    repoURL: https://grafana.github.io/loki/charts
+    repoURL: https://github.com/grafana/loki
     targetRevision: master
-    path: loki/loki-stack
+    path: production/helm/loki/loki-stack
 
     helm:
       releaseName: loki
