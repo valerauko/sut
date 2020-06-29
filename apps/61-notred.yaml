@@ -1,0 +1,40 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: blog
+  namespace: argo-cd
+  annotations:
+    argocd.argoproj.io/sync-wave: "61"
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/valerauko/pehelypress.git
+    targetRevision: master
+    path: ""
+
+    helm:
+      releaseName: notred
+
+      values: |
+        database:
+          existingSecret: "notred-mariadb-creds"
+        ingress:
+          enabled: true
+          annotations:
+            - kubernetes.io/ingress.class: traefik
+          hosts:
+            - host: notred.dekiru.tech
+              paths:
+                - "/"
+          tls:
+            - hosts:
+                - notred.dekiru.tech
+
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+
+  syncPolicy:
+    automated:
+      selfHeal: true
