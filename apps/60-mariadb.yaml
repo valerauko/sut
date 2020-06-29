@@ -18,7 +18,6 @@ spec:
       values: |
         rbac:
           create: true
-        existingSecret: "mariadb-creds"
         root:
           forcePassword: true
           injectSecretsAsVolume: true
