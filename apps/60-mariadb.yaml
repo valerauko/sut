@@ -1,0 +1,42 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mariadb
+  namespace: argo-cd
+  annotations:
+    argocd.argoproj.io/sync-wave: "61"
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/bitnami/charts.git
+    targetRevision: master
+    path: bitnami/mariadb
+
+    helm:
+      releaseName: mariadb
+
+      values: |
+        rbac:
+          create: true
+        existingSecret: mariadb-creds
+        root:
+          forcePassword: true
+          injectSecretsAsVolume: true
+        db:
+          name: valenet
+          user: valerauko
+          forcePassword: true
+          injectSecretsAsVolume: true
+        replication:
+          forcePassword: true
+          injectSecretsAsVolume: true
+        metrics:
+          enabled: true
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+
+  syncPolicy:
+    automated:
+      selfHeal: true
