@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/valerauko/pehelypress.git
     targetRevision: master
-    path: ""
+    path: "."
 
     helm:
       releaseName: notred
