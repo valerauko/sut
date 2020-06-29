@@ -18,6 +18,7 @@ spec:
       values: |
         rbac:
           create: true
+        existingSecret: mariadb
         root:
           forcePassword: true
           injectSecretsAsVolume: true
