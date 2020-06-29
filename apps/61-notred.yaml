@@ -19,10 +19,10 @@ spec:
         database:
           existingSecret: "notred-mariadb-creds"
         php:
-          file_uploads: On
-          upload_max_filesize: "25M"
-          post_max_size: "25M"
-          memory_limit: "128M"
+          file_uploads: "On"
+          upload_max_filesize: "20M"
+          post_max_size: "20M"
+          memory_limit: "64M"
           max_execution_time: "60"
         ingress:
           enabled: true
