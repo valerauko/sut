@@ -18,6 +18,7 @@ spec:
       values: |
         database:
           existingSecret: "notred-mariadb-creds"
+        debug: false
         php:
           file_uploads: "On"
           upload_max_filesize: "20M"
