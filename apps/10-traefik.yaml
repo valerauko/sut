@@ -32,7 +32,10 @@ spec:
             domainsList:
               - main: "*.dekiru.tech"
               - sans:
-                - "dekiru.tech"
+                  - "dekiru.tech"
+              - main: "*.erdos.tech"
+              - sans:
+                  - "erdos.tech"
               - main: "notredrevie.ws"
           challengeType: dns-01
           dnsProvider:
