@@ -33,6 +33,7 @@ spec:
               - main: "*.dekiru.tech"
               - sans:
                 - "dekiru.tech"
+              - main: "notredrevie.ws"
           challengeType: dns-01
           dnsProvider:
             name: linodev4
