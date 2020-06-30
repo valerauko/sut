@@ -30,12 +30,12 @@ spec:
           annotations:
             "kubernetes.io/ingress.class": traefik
           hosts:
-            - host: notred.dekiru.tech
+            - host: notredrevie.ws
               paths:
                 - "/"
           tls:
             - hosts:
-                - notred.dekiru.tech
+                - notredrevie.ws
 
 
   destination:
