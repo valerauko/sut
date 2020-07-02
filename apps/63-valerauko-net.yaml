@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: valerauko.net
+  namespace: argo-cd
+  annotations:
+    argocd.argoproj.io/sync-wave: "63"
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/valerauko/valerauko.net.git
+    targetRevision: master
+    path: manifests
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+
+  syncPolicy:
+    automated:
+      selfHeal: true
