@@ -48,8 +48,7 @@ spec:
         accessLogs:
           enabled: true
         dashboard:
-          enabled: true
-          domain: traefik.dekiru.tech
+          enabled: false
         rbac:
           enabled: true
         metrics:
