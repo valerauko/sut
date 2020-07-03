@@ -31,6 +31,8 @@ spec:
             "kubernetes.io/ingress.class": traefik
           hosts:
             - host: blog.valerauko.net
+              paths:
+                - "/"
           # tls:
           #   - hosts:
           #       - blog.valerauko.net
