@@ -6,7 +6,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "60"
 spec:
-  project: default
+  project: sites
   source:
     repoURL: https://github.com/bitnami/charts.git
     targetRevision: master

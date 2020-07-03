@@ -6,7 +6,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "64"
 spec:
-  project: default
+  project: sites
   source:
     repoURL: https://github.com/valerauko/pehelypress.git
     targetRevision: master
