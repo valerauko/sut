@@ -30,6 +30,9 @@ spec:
           domains:
             enabled: true
             domainsList:
+              - main: "*.valerauko.net"
+              - sans:
+                  - "valerauko.net"
               - main: "*.dekiru.tech"
               - sans:
                   - "dekiru.tech"

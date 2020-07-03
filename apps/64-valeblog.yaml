@@ -33,9 +33,9 @@ spec:
             - host: blog.valerauko.net
               paths:
                 - "/"
-          # tls:
-          #   - hosts:
-          #       - blog.valerauko.net
+          tls:
+            - hosts:
+                - blog.valerauko.net
 
 
   destination:
