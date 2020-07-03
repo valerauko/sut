@@ -4,7 +4,7 @@ metadata:
   name: yureta
   namespace: argo-cd
   annotations:
-    argocd.argoproj.io/sync-wave: "50"
+    argocd.argoproj.io/sync-wave: "80"
 spec:
   project: projects
   source:
