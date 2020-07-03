@@ -1,0 +1,45 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: valeblog
+  namespace: argo-cd
+  annotations:
+    argocd.argoproj.io/sync-wave: "64"
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/valerauko/pehelypress.git
+    targetRevision: master
+    path: "."
+
+    helm:
+      releaseName: valeblog
+
+      values: |
+        database:
+          existingSecret: "valeblog-mariadb-creds"
+        debug: false
+        php:
+          file_uploads: "On"
+          upload_max_filesize: "20M"
+          post_max_size: "20M"
+          memory_limit: "64M"
+          max_execution_time: "60"
+        ingress:
+          enabled: true
+          annotations:
+            "kubernetes.io/ingress.class": traefik
+          hosts:
+            - host: blog.valerauko.net
+          # tls:
+          #   - hosts:
+          #       - blog.valerauko.net
+
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+
+  syncPolicy:
+    automated:
+      selfHeal: true
