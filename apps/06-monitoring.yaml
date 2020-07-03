@@ -3,6 +3,8 @@ kind: AppProject
 metadata:
   name: monitoring
   namespace: argo-cd
+  annotations:
+    argocd.argoproj.io/sync-wave: "06"
 spec:
   description: Monitoring stuff
 

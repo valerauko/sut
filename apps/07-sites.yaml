@@ -3,6 +3,8 @@ kind: AppProject
 metadata:
   name: sites
   namespace: argo-cd
+  annotations:
+    argocd.argoproj.io/sync-wave: "07"
 spec:
   description: Static and WP sites
 

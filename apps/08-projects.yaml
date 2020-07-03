@@ -3,6 +3,8 @@ kind: AppProject
 metadata:
   name: projects
   namespace: argo-cd
+  annotations:
+    argocd.argoproj.io/sync-wave: "08"
 spec:
   description: Various projects
 
