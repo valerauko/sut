@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: sites
+  namespace: argo-cd
+spec:
+  description: Static and WP sites
+
+  sourceRepos:
+  - '*'
+
+  destinations:
+  - namespace: default
+    server: https://kubernetes.default.svc
