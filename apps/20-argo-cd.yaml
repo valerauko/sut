@@ -23,11 +23,12 @@ spec:
                 prometheus.io/scrape: "true"
                 prometheus.io/port: "8082"
           affinity:
-            requiredDuringSchedulingIgnoredDuringExecution:
-              nodeSelectorTerms:
-              - matchExpressions:
-                - key: node-role.kubernetes.io/master
-                  operator: DoesNotExist
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                - matchExpressions:
+                  - key: node-role.kubernetes.io/master
+                    operator: DoesNotExist
         server:
           extraArgs:
           - "--insecure"
@@ -38,11 +39,12 @@ spec:
                 prometheus.io/scrape: "true"
                 prometheus.io/port: "8083"
           affinity:
-            requiredDuringSchedulingIgnoredDuringExecution:
-              nodeSelectorTerms:
-              - matchExpressions:
-                - key: node-role.kubernetes.io/master
-                  operator: DoesNotExist
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                - matchExpressions:
+                  - key: node-role.kubernetes.io/master
+                    operator: DoesNotExist
           ingress:
             enabled: true
             annotations:
