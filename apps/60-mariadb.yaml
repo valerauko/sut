@@ -28,6 +28,7 @@ spec:
           forcePassword: true
           injectSecretsAsVolume: true
         replication:
+          enabled: false
           forcePassword: true
           injectSecretsAsVolume: true
         metrics:
