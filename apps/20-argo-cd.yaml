@@ -29,6 +29,8 @@ spec:
                 - matchExpressions:
                   - key: node-role.kubernetes.io/master
                     operator: DoesNotExist
+          livenessProbe:
+            timeoutSeconds: "5"
         server:
           extraArgs:
           - "--insecure"
@@ -38,6 +40,8 @@ spec:
               annotations:
                 prometheus.io/scrape: "true"
                 prometheus.io/port: "8083"
+          livenessProbe:
+            timeoutSeconds: "5"
           affinity:
             nodeAffinity:
               requiredDuringSchedulingIgnoredDuringExecution:
