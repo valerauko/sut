@@ -12,5 +12,5 @@ spec:
   - '*'
 
   destinations:
-  - namespace: projects
+  - namespace: default
     server: https://kubernetes.default.svc
