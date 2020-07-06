@@ -30,7 +30,7 @@ spec:
                   - key: node-role.kubernetes.io/master
                     operator: DoesNotExist
           livenessProbe:
-            timeoutSeconds: "5"
+            timeoutSeconds: "30"
         server:
           extraArgs:
           - "--insecure"
@@ -41,7 +41,7 @@ spec:
                 prometheus.io/scrape: "true"
                 prometheus.io/port: "8083"
           livenessProbe:
-            timeoutSeconds: "5"
+            timeoutSeconds: "30"
           affinity:
             nodeAffinity:
               requiredDuringSchedulingIgnoredDuringExecution:
