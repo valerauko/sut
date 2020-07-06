@@ -66,6 +66,8 @@ spec:
           config:
             url: https://argo.dekiru.tech
         repoServer:
+          extraArgs:
+            - "--parallelismlimit=1"
           metrics:
             enabled: true
             service:
