@@ -31,6 +31,8 @@ spec:
                     operator: DoesNotExist
           livenessProbe:
             timeoutSeconds: "30"
+          readinessProbe:
+            timeoutSeconds: "30"
         server:
           extraArgs:
           - "--insecure"
@@ -41,6 +43,8 @@ spec:
                 prometheus.io/scrape: "true"
                 prometheus.io/port: "8083"
           livenessProbe:
+            timeoutSeconds: "30"
+          readinessProbe:
             timeoutSeconds: "30"
           affinity:
             nodeAffinity:
