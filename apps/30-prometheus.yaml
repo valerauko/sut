@@ -19,6 +19,7 @@ spec:
         global:
           scrape_interval: 10s
         server:
+          retention: "168h"
           statefulSet:
             enabled: true
         alertmanager:
