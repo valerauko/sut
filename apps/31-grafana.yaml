@@ -30,7 +30,6 @@ spec:
           type: statefulset
         plugins:
           - grafana-piechart-panel
-          - grafana-image-renderer
 
   destination:
     server: https://kubernetes.default.svc
