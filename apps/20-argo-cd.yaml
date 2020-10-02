@@ -68,6 +68,13 @@ spec:
         repoServer:
           extraArgs:
             - "--parallelismlimit=1"
+          affinity:
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                - matchExpressions:
+                  - key: node-role.kubernetes.io/master
+                    operator: DoesNotExist
           metrics:
             enabled: true
             service:
