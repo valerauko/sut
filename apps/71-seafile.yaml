@@ -28,6 +28,8 @@ spec:
           tls:
             - hosts:
                 - seafile.valerauko.net
+                  paths:
+                    - "/"
 
   destination:
     server: https://kubernetes.default.svc
