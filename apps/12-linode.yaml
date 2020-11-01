@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: linode
+  namespace: argo-cd
+  annotations:
+    argocd.argoproj.io/sync-wave: "12"
+spec:
+  project: system
+  source:
+    repoURL: https://github.com/valerauko/sut.git
+    targetRevision: master
+    path: linode
+
+    directory:
+      recurse: true
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kube-system
+
+  syncPolicy:
+    automated:
+      selfHeal: true
