@@ -28,3 +28,5 @@ spec:
     kind: CustomResourceDefinition
   - group: 'storage.k8s.io'
     kind: StorageClass
+  - group: 'csi.storage.k8s.io'
+    kind: CSIDriver
