@@ -21,6 +21,8 @@ spec:
           existingSecret: "seafile-mariadb-creds"
         admin:
           existingSecret: "seafile-admin-creds"
+        persistence:
+          storageClass: "linode-block-storage-retain"
         ingress:
           enabled: true
           annotations:
