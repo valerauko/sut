@@ -26,10 +26,10 @@ spec:
           annotations:
             "kubernetes.io/ingress.class": traefik
           tls:
-            - hosts:
-                - seafile.valerauko.net
-                  paths:
-                    - "/"
+          - hosts:
+            - seafile.valerauko.net
+              paths:
+                - "/"
 
   destination:
     server: https://kubernetes.default.svc
