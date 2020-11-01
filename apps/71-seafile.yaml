@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: seafile
+  namespace: argo-cd
+  annotations:
+    argocd.argoproj.io/sync-wave: "71"
+spec:
+  project: sites
+  source:
+    repoURL: https://github.com/valerauko/ocean.git
+    targetRevision: feature/chart
+    path: chart
+
+    helm:
+      releaseName: seafile
+      values: |
+        location: https://seafile.valerauko.net
+        timeZone: "Asia/Tokyo"
+        database:
+          existingSecret: "seafile-mariadb-creds"
+        admin:
+          existingSecret: "seafile-admin-creds"
+        ingress:
+          enabled: true
+          annotations:
+            "kubernetes.io/ingress.class": traefik
+          tls:
+            - hosts:
+                - seafile.valerauko.net
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+
+  syncPolicy:
+    automated:
+      selfHeal: true
