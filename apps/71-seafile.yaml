@@ -31,9 +31,9 @@ spec:
           hosts:
             - host: seafile.valerauko.net
               paths:
-                - "/"
+                - path: "/"
                   port: 80
-                - "/seafhttp"
+                - path: "/seafhttp"
                   port: 8082
           tls:
             - hosts:
