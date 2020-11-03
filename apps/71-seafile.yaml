@@ -27,10 +27,14 @@ spec:
           enabled: true
           annotations:
             "kubernetes.io/ingress.class": traefik
+            "traefik.frontend.rule.type": PathPrefixStrip
           hosts:
             - host: seafile.valerauko.net
               paths:
                 - "/"
+                  port: 80
+                - "/seafhttp"
+                  port: 8082
           tls:
             - hosts:
                 - seafile.valerauko.net
