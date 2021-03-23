@@ -9,8 +9,7 @@ spec:
   project: system
   source:
     repoURL: https://argoproj.github.io/argo-helm
-    targetRevision: master
-    path: charts/argo-cd
+    chart: argo/argo-cd
 
     helm:
       releaseName: argo-cd

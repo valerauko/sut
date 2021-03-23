@@ -8,9 +8,8 @@ metadata:
 spec:
   project: sites
   source:
-    repoURL: https://github.com/bitnami/charts.git
-    targetRevision: master
-    path: bitnami/mariadb
+    repoURL: https://charts.bitnami.com/bitnami
+    chart: bitnami/mariadb
 
     helm:
       releaseName: mariadb
