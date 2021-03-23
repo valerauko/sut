@@ -9,7 +9,7 @@ spec:
   project: sites
   source:
     repoURL: https://charts.bitnami.com/bitnami
-    targetRevision: "9.*"
+    targetRevision: "7.*"
     chart: mariadb
 
     helm:
