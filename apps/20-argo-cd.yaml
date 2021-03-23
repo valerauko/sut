@@ -82,7 +82,6 @@ spec:
                 prometheus.io/scrape: "true"
                 prometheus.io/port: "8084"
 
-
   destination:
     server: https://kubernetes.default.svc
     namespace: argo-cd
