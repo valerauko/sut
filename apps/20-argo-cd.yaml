@@ -9,7 +9,7 @@ spec:
   project: system
   source:
     repoURL: https://argoproj.github.io/argo-helm
-    chart: argo/argo-cd
+    chart: argo-cd
     targetRevision: "2.*"
 
     helm:
