@@ -8,8 +8,7 @@ metadata:
 spec:
   project: sites
   source:
-    repoURL: https://charts.bitnami.com/bitnami
-    targetRevision: master
+    repoURL: https://charts.bitnami.com/bitnami/index.yaml
     path: bitnami/mariadb
 
     helm:
