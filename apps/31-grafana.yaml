@@ -8,9 +8,9 @@ metadata:
 spec:
   project: monitoring
   source:
-    repoURL: https://github.com/helm/charts.git
-    targetRevision: master
-    path: stable/grafana
+    repoURL: https://grafana.github.io/helm-charts
+    targetRevision: "*"
+    chart: grafana
 
     helm:
       releaseName: grafana
