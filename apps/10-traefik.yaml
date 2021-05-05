@@ -8,57 +8,63 @@ metadata:
 spec:
   project: system
   source:
-    repoURL: https://github.com/helm/charts.git
-    targetRevision: master
-    path: stable/traefik
+    repoURL: https://helm.traefik.io/traefik
+    chart: traefik
+    targetRevision: "9.*"
 
     helm:
       releaseName: traefik
 
       values: |
-        kubernetes:
-          ingressEndpoint:
-            publishedService: "kube-system/traefik"
-        ssl:
-          enabled: true
-          enforced: true
-        acme:
-          enabled: true
-          email: valerauko@gmail.com
-          staging: false
-          logging: true
-          domains:
+        globalArguments:
+          - "--global.checknewversion"
+        providers:
+          kubernetesIngress:
+            publishedService:
+              enabled: true
+        logs:
+          general:
+            level: INFO
+          access:
             enabled: true
-            domainsList:
-              - main: "*.valerauko.net"
-              - sans:
-                  - "valerauko.net"
-              - main: "*.dekiru.tech"
-              - sans:
-                  - "dekiru.tech"
-              - main: "*.erdos.tech"
-              - sans:
-                  - "erdos.tech"
-              - main: "notredrevie.ws"
-          challengeType: dns-01
-          dnsProvider:
-            name: linodev4
-            linodev4: { LINODE_TOKEN: '' } # chart bug fix hack
-            existingSecretName: host-api-token
-        accessLogs:
-          enabled: true
-        dashboard:
-          enabled: false
+        ingressRoute:
+          dashboard:
+            enabled: false
         rbac:
           enabled: true
-        metrics:
-          prometheus:
-            enabled: true
         deployment:
           podAnnotations:
             prometheus.io/scrape: "true"
             prometheus.io/path: "/metrics"
             prometheus.io/port: "9100"
+        ports:
+          web:
+            redirectTo: websecure
+          websecure:
+            tls:
+              enabled: true
+              certResolver: letsencrypt
+              domains:
+                - main: "*.valerauko.net"
+                - sans:
+                    - "valerauko.net"
+                - main: "*.dekiru.tech"
+                - sans:
+                    - "dekiru.tech"
+                - main: "*.erdos.tech"
+                - sans:
+                    - "erdos.tech"
+                - main: "notredrevie.ws"
+        additionalArguments:
+          - "--certificatesresolvers.letsencrypt.acme.email=valerauko@gmail.com"
+          - "--certificatesresolvers.letsencrypt.acme.storage=/data/acme.json"
+          - "--certificatesresolvers.letsencrypt.acme.dnschallenge.provider=linode"
+        persistence:
+          enabled: true
+          size: 32Mi
+        envFrom:
+          - secretRef:
+              name: host-api-token
 
   destination:
     server: https://kubernetes.default.svc
