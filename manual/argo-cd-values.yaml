@@ -47,8 +47,6 @@ server:
     tls:
     - hosts:
       - argo.dekiru.tech
-  config:
-    url: https://argo.dekiru.tech
 repoServer:
   extraArgs:
     - "--parallelismlimit=1"
