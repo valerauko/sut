@@ -27,9 +27,6 @@ spec:
             level: INFO
           access:
             enabled: true
-        ingressRoute:
-          dashboard:
-            enabled: false
         rbac:
           enabled: true
         deployment:
