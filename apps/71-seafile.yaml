@@ -46,34 +46,3 @@ spec:
   syncPolicy:
     automated:
       selfHeal: true
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
-metadata:
-  name: seafile-seafhttp-ingressRoute
-  namespace: default
-  labels:
-    argocd.argoproj.io/instance: seafile
-spec:
-  entryPoints:
-    - websecure
-  routes:
-    - match: Host(`seafile.valerauko.net`) && PathPrefix(`/seafhttp`)
-      kind: Rule
-      services:
-        - name: seafile-ocean
-          port: filesrv
-      middlewares:
-        - name: seafile-filesrv-stripprefix
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: seafile-filesrv-stripprefix
-  namespace: default
-  labels:
-    argocd.argoproj.io/instance: seafile
-spec:
-  stripPrefix:
-    prefixes:
-      - /seafhttp
