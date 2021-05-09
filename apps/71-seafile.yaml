@@ -33,8 +33,6 @@ spec:
               paths:
                 - path: "/"
                   port: 80
-                - path: "/seafhttp"
-                  port: 8082
           tls:
             - hosts:
                 - seafile.valerauko.net

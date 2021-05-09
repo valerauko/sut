@@ -19,10 +19,6 @@ spec:
         globalArguments:
           - "--global.checknewversion"
         providers:
-          kubernetesCRD:
-            enabled: true
-            namespaces:
-              - default
           kubernetesIngress:
             publishedService:
               enabled: true
