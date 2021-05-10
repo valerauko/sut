@@ -1,0 +1,18 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: seafile-seafhttp-ingressroute
+  labels:
+    argocd.argoproj.io/instance: seafile
+spec:
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`seafile.valerauko.net`) && PathPrefix(`/seafhttp`)
+      kind: Rule
+      services:
+        - name: seafile-ocean
+          port: 8082
+      middlewares:
+        - name: seafile-filesrv-stripprefix
