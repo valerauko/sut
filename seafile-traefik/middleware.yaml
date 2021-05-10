@@ -2,9 +2,6 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
   name: seafile-filesrv-stripprefix
-  namespace: default
-  labels:
-    argocd.argoproj.io/instance: seafile
 spec:
   stripPrefix:
     prefixes:

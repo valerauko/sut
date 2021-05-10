@@ -9,7 +9,7 @@ spec:
   project: sites
   source:
     repoURL: https://github.com/valerauko/sut.git
-    targetRevision: main
+    targetRevision: master
     path: seafile-traefik
 
   destination:
