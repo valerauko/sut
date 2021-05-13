@@ -33,7 +33,7 @@ spec:
           podAnnotations:
             prometheus.io/scrape: "true"
             prometheus.io/path: "/metrics"
-            prometheus.io/port: "9100"
+            prometheus.io/port: "9000"
         ports:
           web:
             redirectTo: websecure
@@ -56,6 +56,7 @@ spec:
           - "--certificatesresolvers.letsencrypt.acme.email=valerauko@gmail.com"
           - "--certificatesresolvers.letsencrypt.acme.storage=/data/acme.json"
           - "--certificatesresolvers.letsencrypt.acme.dnschallenge.provider=linode"
+          - "--metrics.prometheus.addServicesLabels=true"
         persistence:
           enabled: true
           size: 32Mi
