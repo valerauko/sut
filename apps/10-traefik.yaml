@@ -16,6 +16,9 @@ spec:
       releaseName: traefik
 
       values: |
+        image:
+          name: valerauko/traefa
+          tag: "2.4.8-alpha4"
         globalArguments:
           - "--global.checknewversion"
         providers:
@@ -57,6 +60,9 @@ spec:
           - "--certificatesresolvers.letsencrypt.acme.storage=/data/acme.json"
           - "--certificatesresolvers.letsencrypt.acme.dnschallenge.provider=linode"
           - "--metrics.prometheus.addServicesLabels=true"
+          - "--experimental.http3=true"
+          - "--entrypoints.websecure.http3.enabled=true"
+          - "--entrypoints.websecure.http3.advertisedas=:443"
         persistence:
           enabled: true
           size: 32Mi
