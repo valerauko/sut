@@ -25,6 +25,13 @@ spec:
           forcePassword: true
         architecture: standalone
         primary:
+          affinity:
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                  - matchExpressions:
+                      - key: node-role.kubernetes.io/master
+                        operator: DoesNotExist
           persistence:
             storageClass: "linode-block-storage-retain"
             size: "15Gi"
