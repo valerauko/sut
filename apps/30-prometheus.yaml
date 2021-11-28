@@ -31,17 +31,7 @@ spec:
                         operator: In
                         values:
                           - argocd-application-controller
-                  topologyKey: kubernetes.io/hostname
-                - labelSelector:
-                    matchExpressions:
-                      - key: app.kubernetes.io/name
-                        operator: In
-                        values:
                           - mariadb
-                      - key: app.kubernetes.io/component
-                        operator: In
-                        values:
-                          - primary
                   topologyKey: kubernetes.io/hostname
         alertmanager:
           enabled: false
