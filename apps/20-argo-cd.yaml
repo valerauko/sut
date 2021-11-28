@@ -23,12 +23,15 @@ spec:
                 prometheus.io/scrape: "true"
                 prometheus.io/port: "8082"
           affinity:
-            nodeAffinity:
+            podAntiAffinity:
               requiredDuringSchedulingIgnoredDuringExecution:
-                nodeSelectorTerms:
-                - matchExpressions:
-                  - key: node-role.kubernetes.io/master
-                    operator: DoesNotExist
+                - labelSelector:
+                    matchExpressions:
+                      - key: app.kubernetes.io/part-of
+                        operator: In
+                        values:
+                          - argocd
+                  topologyKey: kubernetes.io/hostname
           livenessProbe:
             timeoutSeconds: "30"
           readinessProbe:
@@ -47,12 +50,15 @@ spec:
           readinessProbe:
             timeoutSeconds: "30"
           affinity:
-            nodeAffinity:
+            podAntiAffinity:
               requiredDuringSchedulingIgnoredDuringExecution:
-                nodeSelectorTerms:
-                - matchExpressions:
-                  - key: node-role.kubernetes.io/master
-                    operator: DoesNotExist
+                - labelSelector:
+                    matchExpressions:
+                      - key: app.kubernetes.io/part-of
+                        operator: In
+                        values:
+                          - argocd
+                  topologyKey: kubernetes.io/hostname
           ingress:
             enabled: true
             annotations:
@@ -67,12 +73,15 @@ spec:
           extraArgs:
             - "--parallelismlimit=1"
           affinity:
-            nodeAffinity:
+            podAntiAffinity:
               requiredDuringSchedulingIgnoredDuringExecution:
-                nodeSelectorTerms:
-                - matchExpressions:
-                  - key: node-role.kubernetes.io/master
-                    operator: DoesNotExist
+                - labelSelector:
+                    matchExpressions:
+                      - key: app.kubernetes.io/part-of
+                        operator: In
+                        values:
+                          - argocd
+                  topologyKey: kubernetes.io/hostname
           metrics:
             enabled: true
             service:

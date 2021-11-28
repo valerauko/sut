@@ -23,6 +23,27 @@ spec:
             enabled: true
           persistentVolume:
             storageClass: longhorn
+          affinity:
+            podAntiAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                - labelSelector:
+                    matchExpressions:
+                      - key: app.kubernetes.io/name
+                        operator: In
+                        values:
+                          - argocd-application-controller
+                  topologyKey: kubernetes.io/hostname
+                - labelSelector:
+                    matchExpressions:
+                      - key: app.kubernetes.io/name
+                        operator: In
+                        values:
+                          - mariadb
+                      - key: app.kubernetes.io/component
+                        operator: In
+                        values:
+                          - primary
+                  topologyKey: kubernetes.io/hostname
         alertmanager:
           statefulSet:
             enabled: true

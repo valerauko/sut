@@ -26,12 +26,26 @@ spec:
         architecture: standalone
         primary:
           affinity:
-            nodeAffinity:
+            podAntiAffinity:
               requiredDuringSchedulingIgnoredDuringExecution:
-                nodeSelectorTerms:
-                  - matchExpressions:
-                      - key: node-role.kubernetes.io/master
-                        operator: DoesNotExist
+                - labelSelector:
+                    matchExpressions:
+                      - key: app.kubernetes.io/name
+                        operator: In
+                        values:
+                          - argocd-application-controller
+                  topologyKey: kubernetes.io/hostname
+                - labelSelector:
+                    matchExpressions:
+                      - key: app
+                        operator: In
+                        values:
+                          - prometheus
+                      - key: component
+                        operator: In
+                        values:
+                          - server
+                  topologyKey: kubernetes.io/hostname
           persistence:
             storageClass: "linode-block-storage-retain"
             size: "15Gi"

@@ -25,13 +25,6 @@ spec:
           tls:
             - hosts:
                 - grafana.dekiru.tech
-        affinity:
-          nodeAffinity:
-            requiredDuringSchedulingIgnoredDuringExecution:
-              nodeSelectorTerms:
-              - matchExpressions:
-                - key: node-role.kubernetes.io/master
-                  operator: DoesNotExist
         persistence:
           enabled: true
           type: statefulset
