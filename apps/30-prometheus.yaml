@@ -17,6 +17,7 @@ spec:
 
       values: |
         server:
+          retention: "168h"
           statefulSet:
             enabled: true
           persistentVolume:
@@ -42,11 +43,6 @@ spec:
                         values:
                           - primary
                   topologyKey: kubernetes.io/hostname
-        alertmanager:
-          statefulSet:
-            enabled: true
-          persistentVolume:
-            storageClass: longhorn
         networkPolicy:
           enabled: true
 
