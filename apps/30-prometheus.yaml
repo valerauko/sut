@@ -17,8 +17,6 @@ spec:
 
       values: |
         server:
-          global:
-            scrape_interval: 10s
           statefulSet:
             enabled: true
           persistentVolume:
