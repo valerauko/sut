@@ -43,6 +43,8 @@ spec:
                         values:
                           - primary
                   topologyKey: kubernetes.io/hostname
+        alertmanager:
+          enabled: false
         networkPolicy:
           enabled: true
 
