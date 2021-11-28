@@ -16,9 +16,9 @@ spec:
       releaseName: prometheus
 
       values: |
-        global:
-          scrape_interval: 10s
         server:
+          global:
+            scrape_interval: 10s
           statefulSet:
             enabled: true
           persistentVolume:
@@ -26,6 +26,8 @@ spec:
         alertmanager:
           statefulSet:
             enabled: true
+          persistentVolume:
+            storageClass: longhorn
         networkPolicy:
           enabled: true
 
