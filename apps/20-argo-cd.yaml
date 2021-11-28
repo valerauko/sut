@@ -27,10 +27,11 @@ spec:
               requiredDuringSchedulingIgnoredDuringExecution:
                 - labelSelector:
                     matchExpressions:
-                      - key: app.kubernetes.io/part-of
+                      - key: app.kubernetes.io/name
                         operator: In
                         values:
-                          - argocd
+                          - argocd-server
+                          - argocd-repo-server
                   topologyKey: kubernetes.io/hostname
           livenessProbe:
             timeoutSeconds: "30"
@@ -54,10 +55,11 @@ spec:
               requiredDuringSchedulingIgnoredDuringExecution:
                 - labelSelector:
                     matchExpressions:
-                      - key: app.kubernetes.io/part-of
+                      - key: app.kubernetes.io/name
                         operator: In
                         values:
-                          - argocd
+                          - argocd-application-controller
+                          - argocd-repo-server
                   topologyKey: kubernetes.io/hostname
           ingress:
             enabled: true
@@ -77,10 +79,11 @@ spec:
               requiredDuringSchedulingIgnoredDuringExecution:
                 - labelSelector:
                     matchExpressions:
-                      - key: app.kubernetes.io/part-of
+                      - key: app.kubernetes.io/name
                         operator: In
                         values:
-                          - argocd
+                          - argocd-application-controller
+                          - argocd-server
                   topologyKey: kubernetes.io/hostname
           metrics:
             enabled: true
