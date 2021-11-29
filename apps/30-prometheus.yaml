@@ -21,7 +21,8 @@ spec:
           statefulSet:
             enabled: true
           persistentVolume:
-            storageClass: longhorn
+            storageClass: "linode-block-storage-retain"
+            size: 5Gi
           affinity:
             podAntiAffinity:
               requiredDuringSchedulingIgnoredDuringExecution:
