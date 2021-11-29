@@ -34,6 +34,11 @@ spec:
                           - argocd-application-controller
                           - mariadb
                   topologyKey: kubernetes.io/hostname
+        nodeExporter:
+          tolerations:
+            - key: CriticalAddonsOnly
+              operator: Exists
+              effect: NoSchedule
         alertmanager:
           enabled: false
         networkPolicy:
