@@ -14,8 +14,6 @@ spec:
 
     helm:
       releaseName: longhorn
-      values: |
-        namespaceOverride: kube-system
 
   destination:
     server: https://kubernetes.default.svc
