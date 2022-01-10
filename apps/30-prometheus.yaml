@@ -17,6 +17,7 @@ spec:
 
       values: |
         server:
+          enabled: false
           retention: "168h"
           statefulSet:
             enabled: true
