@@ -17,13 +17,12 @@ spec:
 
       values: |
         server:
-          enabled: false
+          enabled: true
           retention: "168h"
-          statefulSet:
-            enabled: true
           persistentVolume:
-            storageClass: "linode-block-storage-retain"
-            size: 5Gi
+            enabled: false
+          emptyDir:
+            sizeLimit: 1Gi
           affinity:
             podAntiAffinity:
               requiredDuringSchedulingIgnoredDuringExecution:
