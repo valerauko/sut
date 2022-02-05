@@ -30,7 +30,6 @@ spec:
                       - key: app.kubernetes.io/name
                         operator: In
                         values:
-                          - argocd-server
                           - argocd-repo-server
                   topologyKey: kubernetes.io/hostname
           livenessProbe:
@@ -50,17 +49,6 @@ spec:
             timeoutSeconds: "30"
           readinessProbe:
             timeoutSeconds: "30"
-          affinity:
-            podAntiAffinity:
-              requiredDuringSchedulingIgnoredDuringExecution:
-                - labelSelector:
-                    matchExpressions:
-                      - key: app.kubernetes.io/name
-                        operator: In
-                        values:
-                          - argocd-application-controller
-                          - argocd-repo-server
-                  topologyKey: kubernetes.io/hostname
           ingress:
             enabled: true
             annotations:
@@ -83,7 +71,6 @@ spec:
                         operator: In
                         values:
                           - argocd-application-controller
-                          - argocd-server
                   topologyKey: kubernetes.io/hostname
           metrics:
             enabled: true
