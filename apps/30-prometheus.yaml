@@ -17,7 +17,7 @@ spec:
 
       values: |
         server:
-          enabled: false
+          enabled: true
           retention: "168h"
           persistentVolume:
             enabled: false
