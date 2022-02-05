@@ -22,6 +22,16 @@ spec:
               annotations:
                 prometheus.io/scrape: "true"
                 prometheus.io/port: "8082"
+          affinity:
+            podAntiAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                - labelSelector:
+                    matchExpressions:
+                      - key: app.kubernetes.io/name
+                        operator: In
+                        values:
+                          - argocd-repo-server
+                  topologyKey: kubernetes.io/hostname
           livenessProbe:
             timeoutSeconds: "30"
           readinessProbe:
@@ -52,6 +62,16 @@ spec:
         repoServer:
           extraArgs:
             - "--parallelismlimit=1"
+          affinity:
+            podAntiAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                - labelSelector:
+                    matchExpressions:
+                      - key: app.kubernetes.io/name
+                        operator: In
+                        values:
+                          - argocd-application-controller
+                  topologyKey: kubernetes.io/hostname
           metrics:
             enabled: true
             service:
