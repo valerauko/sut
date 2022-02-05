@@ -33,7 +33,6 @@ spec:
                         values:
                           - argocd-application-controller
                           - mariadb
-                          - longhorn
                   topologyKey: kubernetes.io/hostname
         nodeExporter:
           tolerations:
