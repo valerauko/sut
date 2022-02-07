@@ -26,23 +26,15 @@ spec:
           trigger.on-deployed: |
             - description: Application is synced and healthy. Triggered once per commit.
               oncePer: app.status.sync.revision
-              send:
-              - app-deployed
               when: app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy'
           trigger.on-health-degraded: |
             - description: Application has degraded
-              send:
-              - app-health-degraded
               when: app.status.health.status == 'Degraded'
           trigger.on-sync-failed: |
             - description: Application syncing has failed
-              send:
-              - app-sync-failed
               when: app.status.operationState.phase in ['Error', 'Failed']
           trigger.on-sync-status-unknown: |
             - description: Application status is 'Unknown'
-              send:
-              - app-sync-status-unknown
               when: app.status.sync.status == 'Unknown'
         subscriptions:
           - recipients:
