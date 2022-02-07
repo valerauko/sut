@@ -5,6 +5,7 @@ metadata:
   namespace: argo-cd
   annotations:
     argocd.argoproj.io/sync-wave: "12"
+    notifications.argoproj.io/subscribe.on-deployed.grafana: success
 spec:
   project: system
   source:
