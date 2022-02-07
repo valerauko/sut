@@ -33,15 +33,15 @@ spec:
             - enabled: true
         subscriptions:
           - recipients:
-              - grafana:argo:success
+              - grafana:success
             triggers:
               - on-sync-succeeded
           - recipients:
-              - grafana:argo:failed
+              - grafana:failed
             triggers:
               - on-sync-failed
           - recipients:
-              - grafana:argo:problem
+              - grafana:problem
             triggers:
               - on-sync-status-unknown
               - on-health-degraded
