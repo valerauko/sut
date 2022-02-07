@@ -23,13 +23,13 @@ spec:
             apiKey: $grafana-token
             apiUrl: http://grafana.monitoring.svc.cluster.local/api
         triggers:
-          trigger.on-sync-status-unknown:
+          trigger.on-sync-status-unknown: |
             - enabled: true
-          trigger.on-sync-failed:
+          trigger.on-sync-failed: |
             - enabled: true
-          trigger.on-sync-succeeded:
+          trigger.on-sync-succeeded: |
             - enabled: true
-          trigger.on-health-degraded:
+          trigger.on-health-degraded: |
             - enabled: true
         subscriptions:
           - recipients:
