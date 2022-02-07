@@ -1,0 +1,46 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo-notifications
+  namespace: argo-cd
+  annotations:
+    argocd.argoproj.io/sync-wave: "21"
+spec:
+  project: system
+  source:
+    repoURL: https://argoproj.github.io/argo-helm
+    chart: argocd-notifications
+    targetRevision: "1.*"
+
+    helm:
+      releaseName: argo-notifications
+      values: |
+        argocdUrl: https://argo.dekiru.tech
+        secret:
+          create: false
+        notifiers:
+          service.grafana: |
+            apiKey: $grafana-token
+            apiUrl: http://grafana.monitoring.svc.cluster.local/api
+        subscriptions:
+          - recipients:
+              - grafana:argo:success
+            triggers:
+              - on-sync-succeeded
+          - recipients:
+              - grafana:argo:failed
+            triggers:
+              - on-sync-failed
+          - recipients:
+              - grafana:argo:problem
+            triggers:
+              - on-sync-status-unknown
+              - on-health-degraded
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argo-cd
+
+  syncPolicy:
+    automated:
+      selfHeal: true
