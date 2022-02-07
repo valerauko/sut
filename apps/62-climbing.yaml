@@ -5,6 +5,7 @@ metadata:
   namespace: argo-cd
   annotations:
     argocd.argoproj.io/sync-wave: "62"
+    net.valerauko/test: hoge
 spec:
   project: sites
   source:
