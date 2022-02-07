@@ -23,14 +23,14 @@ spec:
             apiKey: $grafana-token
             apiUrl: http://grafana.monitoring.svc.cluster.local/api
         triggers:
-          - name: on-sync-status-unknown
-            enabled: true
-          - name: on-sync-failed
-            enabled: true
-          - name: on-sync-succeeded
-            enabled: true
-          - name: on-health-degraded
-            enabled: true
+          trigger.on-sync-status-unknown:
+            - enabled: true
+          trigger.on-sync-failed:
+            - enabled: true
+          trigger.on-sync-succeeded:
+            - enabled: true
+          trigger.on-health-degraded:
+            - enabled: true
         subscriptions:
           - recipients:
               - grafana:argo:success
