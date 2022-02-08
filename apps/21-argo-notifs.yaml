@@ -21,7 +21,7 @@ spec:
         notifiers:
           service.grafana: |
             apiKey: $grafana-token
-            apiUrl: http://grafana.monitoring.svc.cluster.local/api
+            apiUrl: http://http-test.monitoring.svc.cluster.local/api
         triggers:
           trigger.on-deployed: |
             - description: Application is synced and healthy. Triggered once per commit.
