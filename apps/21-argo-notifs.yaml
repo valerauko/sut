@@ -22,6 +22,10 @@ spec:
           service.grafana: |
             apiKey: $grafana-token
             apiUrl: http://http-test.monitoring.svc.cluster.local/api
+        templates:
+          template.app-deployed: |
+            message: |
+              Application {{.app.metadata.name}} is now running new version of deployments manifests.
         triggers:
           trigger.on-deployed: |
             - description: Application is synced and healthy. Triggered once per commit.
