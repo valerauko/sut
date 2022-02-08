@@ -26,6 +26,19 @@ spec:
           template.app-deployed: |
             message: |
               Application {{.app.metadata.name}} is now running new version of deployments manifests.
+          template.app-health-degraded: |
+            message: |
+              Application {{.app.metadata.name}} has degraded.
+              Application details: {{.context.argocdUrl}}/applications/{{.app.metadata.name}}.
+          template.app-sync-failed: |
+            message: |
+              The sync operation of application {{.app.metadata.name}} has failed at {{.app.status.operationState.finishedAt}} with the following error: {{.app.status.operationState.message}}
+              Sync operation details are available at: {{.context.argocdUrl}}/applications/{{.app.metadata.name}}?operation=true .
+          template.app-sync-status-unknown: |
+            message: |
+              {{range $c := .app.status.conditions}}
+                  * {{$c.message}}
+              {{end}}
         triggers:
           trigger.on-deployed: |
             - description: Application is synced and healthy. Triggered once per commit.
@@ -34,12 +47,15 @@ spec:
               when: app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy'
           trigger.on-health-degraded: |
             - description: Application has degraded
+              send: [app-health-degraded]
               when: app.status.health.status == 'Degraded'
           trigger.on-sync-failed: |
             - description: Application syncing has failed
+              send: [app-sync-failed]
               when: app.status.operationState.phase in ['Error', 'Failed']
           trigger.on-sync-status-unknown: |
             - description: Application status is 'Unknown'
+              send: [app-sync-status-unknown]
               when: app.status.sync.status == 'Unknown'
         subscriptions:
           - recipients:
