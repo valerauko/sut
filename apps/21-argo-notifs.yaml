@@ -44,19 +44,19 @@ spec:
             - description: Application is synced and healthy. Triggered once per commit.
               send: [app-deployed]
               oncePer: app.status.sync.revision
-              when: app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy'
+              when: app.metadata.name != 'bootstrap' and app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy'
           trigger.on-health-degraded: |
             - description: Application has degraded
               send: [app-health-degraded]
-              when: app.status.health.status == 'Degraded'
+              when: app.metadata.name != 'bootstrap' and app.status.health.status == 'Degraded'
           trigger.on-sync-failed: |
             - description: Application syncing has failed
               send: [app-sync-failed]
-              when: app.status.operationState.phase in ['Error', 'Failed']
+              when: app.metadata.name != 'bootstrap' and app.status.operationState.phase in ['Error', 'Failed']
           trigger.on-sync-status-unknown: |
             - description: Application status is 'Unknown'
               send: [app-sync-status-unknown]
-              when: app.status.sync.status == 'Unknown'
+              when: app.metadata.name != 'bootstrap' and app.status.sync.status == 'Unknown'
         subscriptions:
           - recipients:
               - grafana:success
