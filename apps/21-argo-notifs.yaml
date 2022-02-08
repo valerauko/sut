@@ -25,6 +25,7 @@ spec:
         triggers:
           trigger.on-deployed: |
             - description: Application is synced and healthy. Triggered once per commit.
+              send: [app-deployed]
               oncePer: app.status.sync.revision
               when: app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy'
           trigger.on-health-degraded: |
