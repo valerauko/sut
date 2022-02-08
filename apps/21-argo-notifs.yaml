@@ -21,7 +21,7 @@ spec:
         notifiers:
           service.grafana: |
             apiKey: $grafana-token
-            apiUrl: http://http-test.monitoring.svc.cluster.local/api
+            apiUrl: http://grafana.monitoring.svc.cluster.local/api
         templates:
           template.app-deployed: |
             message: |
