@@ -175,7 +175,6 @@ rules:
   - get
   - list
   - watch
-  - update
   - patch
 - apiGroups:
   - ""
@@ -188,9 +187,16 @@ rules:
 - apiGroups:
   - ""
   resources:
+  - pods
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - ""
+  resources:
   - persistentvolumeclaims/status
   verbs:
-  - update
   - patch
 - apiGroups:
   - ""
@@ -260,8 +266,6 @@ apiVersion: v1
 data:
   get-linode-id.sh: |-
     #!/bin/bash -efu
-    # this picks up the k3s "providerID" that obviously doesn't work with linode
-    exit 0
     id="$(kubectl get node/"${NODE_NAME}" -o jsonpath='{.spec.providerID}')"
     if [[ ! -z "${id}" ]]; then
       echo "${id}"
@@ -299,6 +303,7 @@ spec:
     spec:
       containers:
       - args:
+        - --default-fstype=ext4
         - --volume-name-prefix=pvc
         - --volume-name-uuid-length=16
         - --csi-address=$(ADDRESS)
@@ -306,8 +311,8 @@ spec:
         env:
         - name: ADDRESS
           value: /var/lib/csi/sockets/pluginproxy/csi.sock
-        image: quay.io/k8scsi/csi-provisioner:v1.6.0
-        imagePullPolicy: Always
+        image: k8s.gcr.io/sig-storage/csi-provisioner:v3.0.0
+        imagePullPolicy: IfNotPresent
         name: csi-provisioner
         volumeMounts:
         - mountPath: /var/lib/csi/sockets/pluginproxy/
@@ -318,8 +323,8 @@ spec:
         env:
         - name: ADDRESS
           value: /var/lib/csi/sockets/pluginproxy/csi.sock
-        image: quay.io/k8scsi/csi-attacher:v2.2.0
-        imagePullPolicy: Always
+        image: k8s.gcr.io/sig-storage/csi-attacher:v3.3.0
+        imagePullPolicy: IfNotPresent
         name: csi-attacher
         volumeMounts:
         - mountPath: /var/lib/csi/sockets/pluginproxy/
@@ -330,8 +335,9 @@ spec:
         env:
         - name: ADDRESS
           value: /var/lib/csi/sockets/pluginproxy/csi.sock
-        image: quay.io/k8scsi/csi-resizer:v0.5.0
-        name: linode-csi-resizer
+        image: k8s.gcr.io/sig-storage/csi-resizer:v1.3.0
+        imagePullPolicy: IfNotPresent
+        name: csi-resizer
         volumeMounts:
         - mountPath: /var/lib/csi/sockets/pluginproxy/
           name: socket-dir
@@ -348,18 +354,17 @@ spec:
         - name: LINODE_API_URL
           value: https://api.linode.com/v4
         - name: LINODE_BS_PREFIX
-          value: null
         - name: NODE_NAME
           valueFrom:
             fieldRef:
+              apiVersion: v1
               fieldPath: spec.nodeName
         - name: LINODE_TOKEN
           valueFrom:
             secretKeyRef:
               key: token
               name: linode
-        image: linode/linode-blockstorage-csi-driver:v0.3.0
-        imagePullPolicy: Always
+        image: linode/linode-blockstorage-csi-driver:v0.5.0
         name: linode-csi-plugin
         volumeMounts:
         - mountPath: /linode-info
@@ -375,6 +380,7 @@ spec:
         - name: NODE_NAME
           valueFrom:
             fieldRef:
+              apiVersion: v1
               fieldPath: spec.nodeName
         image: bitnami/kubectl:1.16.3-debian-10-r36
         name: init
@@ -384,6 +390,13 @@ spec:
         - mountPath: /scripts
           name: get-linode-id
       serviceAccount: csi-controller-sa
+      tolerations:
+      - effect: NoSchedule
+        operator: Exists
+      - key: CriticalAddonsOnly
+        operator: Exists
+      - effect: NoExecute
+        operator: Exists
       volumes:
       - emptyDir: {}
         name: socket-dir
@@ -452,7 +465,7 @@ spec:
             secretKeyRef:
               key: token
               name: linode
-        image: linode/linode-blockstorage-csi-driver:v0.3.0
+        image: linode/linode-blockstorage-csi-driver:v0.5.0
         imagePullPolicy: Always
         name: csi-linode-plugin
         securityContext:
@@ -489,7 +502,15 @@ spec:
           name: linode-info
         - mountPath: /scripts
           name: get-linode-id
+      priorityClassName: system-node-critical
       serviceAccount: csi-node-sa
+      tolerations:
+      - effect: NoSchedule
+        operator: Exists
+      - key: CriticalAddonsOnly
+        operator: Exists
+      - effect: NoExecute
+        operator: Exists
       volumes:
       - emptyDir: {}
         name: linode-info
