@@ -9,7 +9,7 @@ spec:
   project: monitoring
   source:
     repoURL: https://prometheus-community.github.io/helm-charts
-    targetRevision: "*"
+    targetRevision: "18.4.*"
     chart: prometheus
 
     helm:
