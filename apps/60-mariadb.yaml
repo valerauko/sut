@@ -8,7 +8,7 @@ metadata:
 spec:
   project: sites
   source:
-    repoURL: https://charts.bitnami.com/bitnami
+    repoURL: oci://registry-1.docker.io/bitnamicharts/mariadb
     targetRevision: "9.*"
     chart: mariadb
 
