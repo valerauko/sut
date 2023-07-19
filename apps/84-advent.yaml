@@ -1,15 +1,15 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: climbing-static
+  name: advent
   namespace: argo-cd
   annotations:
-    argocd.argoproj.io/sync-wave: "62"
+    argocd.argoproj.io/sync-wave: "84"
 spec:
   project: sites
   source:
-    repoURL: https://github.com/valerauko/climbing.git
-    targetRevision: master
+    repoURL: https://github.com/valerauko/personal-advent.git
+    targetRevision: v1.1.0
     path: manifests
 
   destination:

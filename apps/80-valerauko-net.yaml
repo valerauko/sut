@@ -1,15 +1,15 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: advent
+  name: valerauko.net
   namespace: argo-cd
   annotations:
-    argocd.argoproj.io/sync-wave: "65"
+    argocd.argoproj.io/sync-wave: "80"
 spec:
   project: sites
   source:
-    repoURL: https://github.com/valerauko/personal-advent.git
-    targetRevision: v1.1.0
+    repoURL: https://github.com/valerauko/valerauko.net.git
+    targetRevision: master
     path: manifests
 
   destination:

@@ -4,7 +4,7 @@ metadata:
   name: notred
   namespace: argo-cd
   annotations:
-    argocd.argoproj.io/sync-wave: "61"
+    argocd.argoproj.io/sync-wave: "81"
 spec:
   project: sites
   source:
