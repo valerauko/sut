@@ -1,0 +1,57 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nextcloud
+  namespace: argo-cd
+  annotations:
+    argocd.argoproj.io/sync-wave: "70"
+spec:
+  project: sites
+  source:
+    repoURL: https://nextcloud.github.io/helm/
+    targetRevision: "3.*"
+    chart: nextcloud
+
+    helm:
+      releaseName: nextcloud
+
+      values: |
+        nextcloud:
+          host: storage.erdos.tech
+          existingSecret:
+            enabled: true
+            secretName: nextcloud-admin
+            usernameKey: nextcloud-username
+            passwordKey: nextcloud-password
+        ingress:
+          enabled: true
+          tls:
+            - hosts:
+                - storage.erdos.tech
+        persistence:
+          enabled: true
+          storageClass: linode-block-storage-retain
+        cronjob:
+          enabled: true
+        redis:
+          enabled: true
+        internalDatabase:
+          enabled: false
+        externalDatabase:
+          enabled: true
+          type: mysql
+          existingSecret:
+            enabled: true
+            secretName: mariadb
+            usernameKey: username
+            passwordKey: password
+            hostKey: hostname
+            databaseKey: database
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+
+  syncPolicy:
+    automated:
+      selfHeal: true
