@@ -23,6 +23,9 @@ spec:
             secretName: nextcloud-admin
             usernameKey: nextcloud-username
             passwordKey: nextcloud-password
+        phpClientHttpsFix:
+          enabled: true
+          protocol: https
         ingress:
           enabled: true
           tls:
