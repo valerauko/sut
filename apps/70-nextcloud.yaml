@@ -42,7 +42,7 @@ spec:
           type: mysql
           existingSecret:
             enabled: true
-            secretName: mariadb
+            secretName: nextcloud-mariadb
             usernameKey: username
             passwordKey: password
             hostKey: hostname
