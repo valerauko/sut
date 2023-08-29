@@ -23,6 +23,16 @@ spec:
             secretName: nextcloud-admin
             usernameKey: nextcloud-username
             passwordKey: nextcloud-password
+        affinity:
+          podAntiAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              - labelSelector:
+                  matchExpressions:
+                    - key: app.kubernetes.io/name
+                      operator: In
+                      values:
+                        - argocd-application-controller
+                topologyKey: kubernetes.io/hostname
         phpClientHttpsFix:
           enabled: true
           protocol: https
