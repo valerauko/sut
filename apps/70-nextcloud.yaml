@@ -38,6 +38,8 @@ spec:
           enabled: true
         redis:
           enabled: true
+          replica:
+            replicaCount: 0
         internalDatabase:
           enabled: false
         externalDatabase:
