@@ -34,6 +34,17 @@ spec:
             prometheus.io/scrape: "true"
             prometheus.io/path: "/metrics"
             prometheus.io/port: "9000"
+          initContainers:
+            - name: volume-permissions
+              image: busybox:latest
+              command: ["sh", "-c", "touch /data/acme.json; chmod -v 600 /data/acme.json"]
+              securityContext:
+                runAsNonRoot: true
+                runAsGroup: 65532
+                runAsUser: 65532
+              volumeMounts:
+                - name: data
+                  mountPath: /data
         ports:
           web:
             redirectTo: websecure
@@ -54,6 +65,7 @@ spec:
                 - main: "notredrevie.ws"
         additionalArguments:
           - "--certificatesresolvers.letsencrypt.acme.email=valerauko@gmail.com"
+          - "--certificatesresolvers.letsencrypt.acme.storage=/data/acme.json"
           - "--certificatesresolvers.letsencrypt.acme.dnschallenge.provider=linode"
           - "--metrics.prometheus.addServicesLabels=true"
           - "--entrypoints.websecure.http3.advertisedport=443"
