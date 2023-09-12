@@ -37,11 +37,11 @@ spec:
           initContainers:
             - name: volume-permissions
               image: busybox:latest
-              command: ["sh", "-c", "touch /data/acme.json; chmod -v 600 /data/acme.json"]
-              securityContext:
-                runAsNonRoot: true
-                runAsGroup: 65532
-                runAsUser: 65532
+              command: ["sh", "-c", "touch /data/acme.json; chown 65532:65532 /data/acme.json; chmod -v 600 /data/acme.json"]
+              # securityContext:
+              #   runAsNonRoot: true
+              #   runAsGroup: 65532
+              #   runAsUser: 65532
               volumeMounts:
                 - name: data
                   mountPath: /data
