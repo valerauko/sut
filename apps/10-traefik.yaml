@@ -57,7 +57,6 @@ spec:
           - "--certificatesresolvers.letsencrypt.acme.storage=/data/acme.json"
           - "--certificatesresolvers.letsencrypt.acme.dnschallenge.provider=linode"
           - "--metrics.prometheus.addServicesLabels=true"
-          - "--entrypoints.websecure.http3.enabled=true"
           - "--entrypoints.websecure.http3.advertisedport=:443"
         persistence:
           enabled: true
