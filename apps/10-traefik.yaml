@@ -34,9 +34,13 @@ spec:
             prometheus.io/scrape: "true"
             prometheus.io/path: "/metrics"
             prometheus.io/port: "9000"
-          additionalVolumes:
-            - name: data
-              mountPath: /data
+          initContainers:
+            - name: volume-permissions
+              image: busybox:latest
+              command: ["sh", "-c", "touch /data/acme.json; chmod -v 600 /data/acme.json"]
+              volumeMounts:
+              - mountPath: /data
+                name: data
         ports:
           web:
             redirectTo: websecure
