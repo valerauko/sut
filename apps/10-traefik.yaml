@@ -34,8 +34,6 @@ spec:
             prometheus.io/scrape: "true"
             prometheus.io/path: "/metrics"
             prometheus.io/port: "9000"
-        persistence:
-          enabled: true
         ports:
           web:
             redirectTo: websecure
@@ -60,9 +58,13 @@ spec:
           - "--certificatesresolvers.letsencrypt.acme.dnschallenge.provider=linode"
           - "--metrics.prometheus.addServicesLabels=true"
           - "--entrypoints.websecure.http3.advertisedport=443"
-        persistence:
-          enabled: true
-          size: 32Mi
+        initContainers:
+          - name: volume-permissions
+            image: busybox:latest
+            command: ["sh", "-c", "touch /data/acme.json; chmod -v 600 /data/acme.json"]
+            volumeMounts:
+            - mountPath: /data
+              name: data
         envFrom:
           - secretRef:
               name: host-api-token
