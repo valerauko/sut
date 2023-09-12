@@ -54,7 +54,6 @@ spec:
                 - main: "notredrevie.ws"
         additionalArguments:
           - "--certificatesresolvers.letsencrypt.acme.email=valerauko@gmail.com"
-          - "--certificatesresolvers.letsencrypt.acme.storage=/data/acme.json"
           - "--certificatesresolvers.letsencrypt.acme.dnschallenge.provider=linode"
           - "--metrics.prometheus.addServicesLabels=true"
           - "--entrypoints.websecure.http3.advertisedport=443"
