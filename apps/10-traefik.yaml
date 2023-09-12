@@ -38,6 +38,9 @@ spec:
           web:
             redirectTo: websecure
           websecure:
+            http3:
+              enabled: true
+              advertisedPort: 443
             tls:
               enabled: true
               certResolver: letsencrypt
@@ -57,7 +60,6 @@ spec:
           - "--certificatesresolvers.letsencrypt.acme.storage=/data/acme.json"
           - "--certificatesresolvers.letsencrypt.acme.dnschallenge.provider=linode"
           - "--metrics.prometheus.addServicesLabels=true"
-          - "--entrypoints.websecure.http3.advertisedport=443"
         initContainers:
           - name: volume-permissions
             image: busybox:latest
