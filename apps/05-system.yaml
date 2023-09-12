@@ -30,3 +30,5 @@ spec:
     kind: StorageClass
   - group: 'storage.k8s.io'
     kind: CSIDriver
+  - group: 'networking.k8s.io'
+    kind: IngressClass
