@@ -16,9 +16,6 @@ spec:
       releaseName: traefik
 
       values: |
-        image:
-          name: valerauko/traefa
-          tag: "2.4.8-alpha4"
         globalArguments:
           - "--global.checknewversion"
         providers:
