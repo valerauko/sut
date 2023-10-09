@@ -8,7 +8,7 @@ metadata:
 spec:
   project: sites
   source:
-    repoURL: oci://registry-1.docker.io
+    repoURL: registry-1.docker.io
     targetRevision: "9.*"
     chart: bitnamicharts/mariadb
 

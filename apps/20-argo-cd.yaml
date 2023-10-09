@@ -78,6 +78,15 @@ spec:
               annotations:
                 prometheus.io/scrape: "true"
                 prometheus.io/port: "8084"
+        configs:
+          repositories:
+            docker-registry:
+              url: registry-1.docker.io
+              username: docker
+              password: ""
+              name: docker-registry
+              enableOCI: true
+              type: helm
 
   destination:
     server: https://kubernetes.default.svc
