@@ -85,7 +85,7 @@ spec:
               username: docker
               password: ""
               name: docker-registry
-              enableOCI: true
+              enableOCI: "true"
               type: helm
 
   destination:
