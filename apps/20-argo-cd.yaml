@@ -82,8 +82,6 @@ spec:
           repositories:
             docker-registry:
               url: registry-1.docker.io
-              username: docker
-              password: ""
               name: docker-registry
               enableOCI: "true"
               type: helm
