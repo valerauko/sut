@@ -9,7 +9,7 @@ spec:
   project: sites
   source:
     repoURL: registry-1.docker.io
-    targetRevision: "9.8.1"
+    targetRevision: "13.1.*"
     chart: bitnamicharts/mariadb
 
     helm:
