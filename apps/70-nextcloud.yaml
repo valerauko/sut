@@ -9,7 +9,7 @@ spec:
   project: sites
   source:
     repoURL: https://nextcloud.github.io/helm/
-    targetRevision: "3.*"
+    targetRevision: "4.*"
     chart: nextcloud
 
     helm:
