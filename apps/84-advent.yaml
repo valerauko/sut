@@ -9,7 +9,7 @@ spec:
   project: sites
   source:
     repoURL: https://github.com/valerauko/personal-advent.git
-    targetRevision: v1.1.2
+    targetRevision: v1.1.3
     path: manifests
 
   destination:
