@@ -20,7 +20,7 @@ spec:
           enabled: true
           persistentVolume:
             enabled: true
-            size: 5Gi
+            size: 10Gi
             storageClass: "linode-block-storage-retain"
           statefulSet:
             enabled: true
