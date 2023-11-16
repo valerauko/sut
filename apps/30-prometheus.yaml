@@ -18,11 +18,10 @@ spec:
       values: |
         server:
           enabled: true
-          retention: "168h"
           persistentVolume:
-            enabled: false
-          emptyDir:
-            sizeLimit: 1Gi
+            enabled: true
+            size: 5Gi
+            storageClass: "linode-block-storage-retain"
           statefulSet:
             enabled: true
           affinity:
