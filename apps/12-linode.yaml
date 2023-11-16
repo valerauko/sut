@@ -8,12 +8,19 @@ metadata:
 spec:
   project: system
   source:
-    repoURL: https://github.com/valerauko/sut.git
-    targetRevision: master
-    path: linode
+    repoURL: https://github.com/linode/linode-blockstorage-csi-driver.git
+    targetRevision: v0.5.3
+    path: helm-chart/csi-driver
 
-    directory:
-      recurse: true
+    helm:
+      releaseName: linode-csi
+
+      values: |
+        defaultStorageClass: local-path
+        secretRef:
+          name: linode
+          apiTokenRef: token
+          regionRef: region
 
   destination:
     server: https://kubernetes.default.svc
