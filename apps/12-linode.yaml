@@ -9,7 +9,7 @@ spec:
   project: system
   source:
     repoURL: https://github.com/linode/linode-blockstorage-csi-driver.git
-    targetRevision: v0.8.4
+    targetRevision: v0.8.5
     path: helm-chart/csi-driver
 
     helm:
