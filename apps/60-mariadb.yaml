@@ -37,11 +37,11 @@ spec:
                   topologyKey: kubernetes.io/hostname
                 - labelSelector:
                     matchExpressions:
-                      - key: app
+                      - key: app.kubernetes.io/part-of
                         operator: In
                         values:
                           - prometheus
-                      - key: component
+                      - key: app.kubernetes.io/component
                         operator: In
                         values:
                           - server
