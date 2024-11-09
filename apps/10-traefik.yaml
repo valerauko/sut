@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://helm.traefik.io/traefik
     chart: traefik
-    targetRevision: "24.*"
+    targetRevision: "33.*"
 
     helm:
       releaseName: traefik
@@ -55,11 +55,16 @@ spec:
                 - sans:
                     - "erdos.tech"
                 - main: "notredrevie.ws"
-        additionalArguments:
-          - "--certificatesresolvers.letsencrypt.acme.email=valerauko@gmail.com"
-          - "--certificatesresolvers.letsencrypt.acme.storage=/data/acme.json"
-          - "--certificatesresolvers.letsencrypt.acme.dnschallenge.provider=linode"
-          - "--metrics.prometheus.addServicesLabels=true"
+        certificatesResolvers:
+          letsencrypt:
+            acme:
+              email: valerauko@gmail.com
+              storage: /data/acme.json
+              dnsChallenge:
+                provider: linode
+        metrics:
+          prometheus:
+            addServicesLabels: true
         initContainers:
           - name: volume-permissions
             image: busybox:latest
