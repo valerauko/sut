@@ -57,7 +57,8 @@ spec:
     - host: whoami.dekiru.tech
       http:
         paths:
-          - backend:
+          - pathType: Prefix
+            backend:
               service:
                 name: whoami-test
                 port:
