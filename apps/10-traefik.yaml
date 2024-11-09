@@ -44,7 +44,7 @@ spec:
           websecure:
             http3:
               enabled: true
-              advertisedPort: 843
+              advertisedPort: 443
             tls:
               enabled: true
               certResolver: letsencrypt
