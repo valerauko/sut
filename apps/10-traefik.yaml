@@ -36,7 +36,9 @@ spec:
             prometheus.io/port: "9000"
         ports:
           web:
-            redirectTo: websecure
+            redirectTo:
+              port: websecure
+              permanent: true
           websecure:
             http3:
               enabled: true
