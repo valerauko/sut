@@ -41,7 +41,7 @@ spec:
             - name: http
               containerPort: 80
 ---
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: v1
 kind: Ingress
 metadata:
   name: whoami-test
@@ -58,5 +58,7 @@ spec:
       http:
         paths:
           - backend:
-              serviceName: whoami-test
-              servicePort: http
+              service:
+                name: whoami-test
+                port:
+                  name: http
