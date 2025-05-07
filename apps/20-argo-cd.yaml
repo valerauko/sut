@@ -15,6 +15,8 @@ spec:
     helm:
       releaseName: argo-cd
       values: |
+        global:
+          domain: argo.dekiru.tech
         controller:
           metrics:
             enabled: true
@@ -54,11 +56,9 @@ spec:
             annotations:
               kubernetes.io/ingress.class: traefik
               ingress.kubernetes.io/protocol: http
-            hosts:
-            - argo.dekiru.tech
-            tls:
-            - hosts:
-              - argo.dekiru.tech
+            extraTls:
+              - hosts:
+                - argo.dekiru.tech
         repoServer:
           extraArgs:
             - "--parallelismlimit=1"
