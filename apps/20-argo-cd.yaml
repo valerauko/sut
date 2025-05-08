@@ -42,6 +42,8 @@ spec:
           params:
             server.insecure: true
         server:
+          extraArgs:
+            - "--insecure"
           metrics:
             enabled: true
             service:
