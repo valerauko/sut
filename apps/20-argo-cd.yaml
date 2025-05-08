@@ -38,9 +38,10 @@ spec:
             timeoutSeconds: "30"
           readinessProbe:
             timeoutSeconds: "30"
+        configs:
+          params:
+            server.insecure: true
         server:
-          extraArgs:
-          - "--insecure"
           metrics:
             enabled: true
             service:
