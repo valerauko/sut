@@ -40,7 +40,7 @@ spec:
             timeoutSeconds: "30"
         configs:
           params:
-            server.insecure: true
+            server.insecure: "true"
         server:
           extraArgs:
             - "--insecure"
