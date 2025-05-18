@@ -15,6 +15,7 @@ spec:
     helm:
       releaseName: argo-cd
       values: |
+        crds.install: true
         global:
           domain: argo.dekiru.tech
         controller:
