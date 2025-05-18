@@ -9,7 +9,7 @@ spec:
   project: monitoring
   source:
     repoURL: https://grafana.github.io/helm-charts
-    targetRevision: "*"
+    targetRevision: "8.14.0"
     chart: grafana
 
     helm:
