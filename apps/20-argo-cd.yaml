@@ -60,7 +60,6 @@ spec:
             annotations:
               kubernetes.io/ingress.class: traefik
               ingress.kubernetes.io/protocol: http
-            hostname: argo.dekiru.tech
             extraTls:
               - hosts:
                 - argo.dekiru.tech
