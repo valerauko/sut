@@ -38,9 +38,6 @@ spec:
             timeoutSeconds: "30"
           readinessProbe:
             timeoutSeconds: "30"
-        configs:
-          params:
-            server.insecure: "true"
         server:
           extraArgs:
             - "--insecure"
@@ -83,6 +80,8 @@ spec:
                 prometheus.io/scrape: "true"
                 prometheus.io/port: "8084"
         configs:
+          params:
+            server.insecure: "true"
           repositories:
             docker-registry:
               url: registry-1.docker.io
