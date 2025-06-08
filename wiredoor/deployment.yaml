@@ -32,8 +32,11 @@ spec:
             - containerPort: 51820
               name: vpn
               protocol: UDP
-            - containerPort: 3000
+            - containerPort: 80
               name: http
+              protocol: TCP
+            - containerPort: 3000
+              name: admin
               protocol: TCP
           envFrom:
             - configMapRef:

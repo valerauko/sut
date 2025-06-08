@@ -23,4 +23,14 @@ spec:
               service:
                 name: wiredoor
                 port:
+                  name: admin
+    - host: home.dekiru.tech
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: wiredoor
+                port:
                   name: http
