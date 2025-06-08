@@ -33,4 +33,4 @@ spec:
               service:
                 name: wiredoor
                 port:
-                  name: http
+                  name: https
