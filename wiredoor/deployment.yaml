@@ -43,6 +43,10 @@ spec:
           volumeMounts:
             - mountPath: /data
               name: wiredoor-data
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
       volumes:
         - name: wiredoor-data
           emptyDir:
