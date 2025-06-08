@@ -8,7 +8,7 @@ metadata:
     app.kubernetes.io/part-of: wiredoor
   namespace: wiredoor
 data:
-  VPN_HOST: wire.dekiru.tech
+  VPN_HOST: vpn.dekiru.tech
   VPN_PORT: "51820"
   VPN_SUBNET: 11.0.0.0/24
   TZ: Asia/Tokyo
