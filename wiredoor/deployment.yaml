@@ -35,6 +35,9 @@ spec:
             - containerPort: 80
               name: http
               protocol: TCP
+            - containerPort: 443
+              name: https
+              protocol: TCP
             - containerPort: 3000
               name: admin
               protocol: TCP
