@@ -32,7 +32,7 @@ spec:
             - containerPort: 51820
               name: vpn
               protocol: UDP
-            - containerPort: 80
+            - containerPort: 3000
               name: http
               protocol: TCP
           envFrom:
