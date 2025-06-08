@@ -14,6 +14,10 @@ spec:
       port: 80
       protocol: TCP
       targetPort: http
+    - name: admin
+      port: 3000
+      protocol: TCP
+      targetPort: admin
     - name: vpn
       port: 51820
       protocol: UDP
