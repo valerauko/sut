@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: wiredoor
+  namespace: argo-cd
+  annotations:
+    argocd.argoproj.io/sync-wave: "11"
+spec:
+  project: projects
+  source:
+    repoURL: https://github.com/valerauko/sut.git
+    targetRevision: develop/test-wiredoor
+    path: wiredoor
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kube-system
+
+  syncPolicy:
+    automated:
+      selfHeal: true
