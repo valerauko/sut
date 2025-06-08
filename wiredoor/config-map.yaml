@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wiredoor-config
+  labels:
+    app.kubernetes.io/name: wiredoor-config
+    app.kubernetes.io/instance: wiredoor
+    app.kubernetes.io/part-of: wiredoor
+  namespace: wiredoor
+data:
+  VPN_HOST: wire.dekiru.tech
+  VPN_PORT: 51820
+  VPN_SUBNET: 11.0.0.0/24
+  TZ: Asia/Tokyo
