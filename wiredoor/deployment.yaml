@@ -25,7 +25,7 @@ spec:
         app.kubernetes.io/instance: wiredoor
     spec:
       containers:
-        - image: ghcr.io/wiredoor/wiredoor:v1.1.1
+        - image: ghcr.io/wiredoor/wiredoor:latest
           imagePullPolicy: IfNotPresent
           name: wiredoor-server
           ports:
