@@ -38,9 +38,11 @@ spec:
           single: false
         ports:
           web:
-            redirectTo:
-              port: websecure
-              permanent: true
+            redirections:
+              entryPoint:
+                to: websecure
+                scheme: https
+                permanent: true
           websecure:
             http3:
               enabled: true
