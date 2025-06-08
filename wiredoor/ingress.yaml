@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wiredoor
+  labels:
+    app.kubernetes.io/name: wiredoor
+    app.kubernetes.io/instance: wiredoor
+    app.kubernetes.io/part-of: wiredoor
+  annotations:
+    kubernetes.io/ingress.class: traefik
+  namespace: wiredoor
+spec:
+  tls:
+    - hosts:
+        - vpn.dekiru.tech
+  rules:
+    - host: vpn.dekiru.tech
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: wiredoor
+                port:
+                  name: http
