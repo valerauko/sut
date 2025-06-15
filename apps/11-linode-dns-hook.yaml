@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: linode-dns-hook
+  namespace: argo-cd
+  annotations:
+    argocd.argoproj.io/sync-wave: "11"
+spec:
+  project: system
+  source:
+    repoURL: https://github.com/slicen/cert-manager-webhook-linode.git
+    targetRevision: "0.2.*"
+    path: deploy/cert-manager-webhook-linode
+
+    helm:
+      releaseName: cert-manager-webhook-linode
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cert-manager
+
+  syncPolicy:
+    automated:
+      selfHeal: true
