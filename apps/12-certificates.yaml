@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: certificates
+  namespace: argo-cd
+  annotations:
+    argocd.argoproj.io/sync-wave: "11"
+spec:
+  project: system
+  source:
+    repoURL: https://github.com/valerauko/sut.git
+    targetRevision: master
+    path: certificates
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cert-manager
+
+  syncPolicy:
+    automated:
+      selfHeal: true
