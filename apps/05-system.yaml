@@ -34,3 +34,5 @@ spec:
     kind: CSIDriver
   - group: 'networking.k8s.io'
     kind: IngressClass
+  - group: 'admissionregistration.k8s.io'
+    kind: ValidatingWebhookConfiguration
