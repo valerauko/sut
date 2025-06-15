@@ -9,7 +9,7 @@ spec:
   project: system
   source:
     repoURL: https://github.com/linode/cert-manager-webhook-linode.git
-    targetRevision: "0.3.*"
+    targetRevision: "*"
     path: deploy/cert-manager-webhook-linode
 
     helm:
