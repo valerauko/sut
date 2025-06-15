@@ -8,12 +8,16 @@ metadata:
 spec:
   project: system
   source:
-    repoURL: https://github.com/slicen/cert-manager-webhook-linode.git
-    targetRevision: "0.1.*"
+    repoURL: https://github.com/linode/cert-manager-webhook-linode.git
+    targetRevision: "0.3.*"
     path: deploy/cert-manager-webhook-linode
 
     helm:
       releaseName: cert-manager-webhook-linode
+      values: |
+        deployment:
+          secretName: linode
+          logLevel: false
 
   destination:
     server: https://kubernetes.default.svc
