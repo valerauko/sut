@@ -28,6 +28,8 @@ spec:
     kind: ClusterRoleBinding
   - group: 'apiextensions.k8s.io'
     kind: CustomResourceDefinition
+  - group: 'cert-manager.io'
+    kind: ClusterIssuer
   - group: 'storage.k8s.io'
     kind: StorageClass
   - group: 'storage.k8s.io'
