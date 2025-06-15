@@ -8,8 +8,8 @@ metadata:
 spec:
   project: system
   source:
-    repoURL: https://github.com/linode/cert-manager-webhook-linode.git
-    targetRevision: "0.3.*"
+    repoURL: https://github.com/slicen/cert-manager-webhook-linode.git
+    targetRevision: "0.1.*"
     path: deploy/cert-manager-webhook-linode
 
     helm:
