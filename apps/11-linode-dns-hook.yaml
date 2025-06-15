@@ -15,6 +15,8 @@ spec:
     helm:
       releaseName: cert-manager-webhook-linode
       values: |
+        api:
+          groupName: valerauko.net
         deployment:
           secretName: linode
           logLevel: false
