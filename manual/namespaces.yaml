@@ -15,4 +15,4 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: longhorn-system
+  name: cert-manager
