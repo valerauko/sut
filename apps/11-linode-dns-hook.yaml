@@ -17,6 +17,9 @@ spec:
       values: |
         api:
           groupName: valerauko.net
+        image:
+          repository: linode/cert-manager-webhook-linode
+          tag: v0.3.0
         deployment:
           secretName: linode
           logLevel: false
