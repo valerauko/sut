@@ -8,7 +8,7 @@ spec:
   secretName: valerauko-net-tls
 
   privateKey:
-    algorithm: Ed25519
+    algorithm: ECDSA
 
   # Avoid using commonName for DNS names in end-entity (leaf) certificates. Unless you have a specific
   # need for it in your environment, use dnsNames exclusively to avoid issues with commonName.
