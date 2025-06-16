@@ -2,7 +2,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: erdos-tech
-  namespace: kube-system
+  namespace: default
 spec:
   # Secret names are always required.
   secretName: erdos-tech-tls

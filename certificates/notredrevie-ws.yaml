@@ -2,7 +2,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: notredrevie-ws
-  namespace: kube-system
+  namespace: default
 spec:
   # Secret names are always required.
   secretName: notredrevie-ws-tls
