@@ -21,8 +21,7 @@ spec:
           repository: linode/cert-manager-webhook-linode
           tag: v0.3.0
         deployment:
-          secretName: host-api-token
-          secretKey: LINODE_TOKEN
+          secretName: linode-token
 
   destination:
     server: https://kubernetes.default.svc
