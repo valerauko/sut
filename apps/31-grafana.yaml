@@ -25,7 +25,6 @@ spec:
           tls:
             - hosts:
                 - grafana.dekiru.tech
-              secretName: dekiru-tech-tls
         persistence:
           enabled: true
           type: statefulset
