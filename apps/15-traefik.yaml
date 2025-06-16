@@ -49,25 +49,6 @@ spec:
               advertisedPort: 443
             tls:
               enabled: true
-              certResolver: letsencrypt
-              domains:
-                - main: "*.valerauko.net"
-                - sans:
-                    - "valerauko.net"
-                - main: "*.dekiru.tech"
-                - sans:
-                    - "dekiru.tech"
-                - main: "*.erdos.tech"
-                - sans:
-                    - "erdos.tech"
-                - main: "notredrevie.ws"
-        certificatesResolvers:
-          letsencrypt:
-            acme:
-              email: valerauko@gmail.com
-              storage: /data/acme.json
-              dnsChallenge:
-                provider: linode
         metrics:
           prometheus:
             addServicesLabels: true
