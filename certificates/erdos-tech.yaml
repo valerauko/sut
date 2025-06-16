@@ -1,0 +1,29 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: erdos-tech
+  namespace: kube-system
+spec:
+  # Secret names are always required.
+  secretName: erdos-tech-tls
+
+  privateKey:
+    algorithm: RSA
+
+  # Avoid using commonName for DNS names in end-entity (leaf) certificates. Unless you have a specific
+  # need for it in your environment, use dnsNames exclusively to avoid issues with commonName.
+  # Usually, commonName is used to give human-readable names to CA certificates and can be avoided for
+  # other certificates.
+  commonName: "*.erdos.tech"
+
+  # At least one of commonName (possibly through literalSubject), dnsNames, uris, emailAddresses, ipAddresses or otherNames is required.
+  dnsNames:
+    - "*.erdos.tech"
+    - "erdos.tech"
+
+  # Issuer references are always required.
+  issuerRef:
+    name: letsencrypt-staging
+    # We can reference ClusterIssuers by changing the kind here.
+    # The default value is Issuer (i.e. a locally namespaced Issuer)
+    kind: ClusterIssuer
