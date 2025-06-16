@@ -22,7 +22,6 @@ spec:
           tag: v0.3.0
         deployment:
           secretName: linode
-          logLevel: false
 
   destination:
     server: https://kubernetes.default.svc
