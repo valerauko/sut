@@ -36,6 +36,7 @@ spec:
           tls:
             - hosts:
                 - notredrevie.ws
+              secretName: notredrevie-ws-tls
         tolerations:
           - key: CriticalAddonsOnly
             operator: Exists
