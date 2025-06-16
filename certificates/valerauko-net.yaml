@@ -14,7 +14,7 @@ spec:
   # need for it in your environment, use dnsNames exclusively to avoid issues with commonName.
   # Usually, commonName is used to give human-readable names to CA certificates and can be avoided for
   # other certificates.
-  commonName: valerauko.net
+  commonName: "*.valerauko.net"
 
   # At least one of commonName (possibly through literalSubject), dnsNames, uris, emailAddresses, ipAddresses or otherNames is required.
   dnsNames:
