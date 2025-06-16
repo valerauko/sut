@@ -36,7 +36,7 @@ spec:
           tls:
             - hosts:
                 - blog.valerauko.net
-
+              secretName: valerauko-net-tls
 
   destination:
     server: https://kubernetes.default.svc
