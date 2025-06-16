@@ -19,6 +19,7 @@ spec:
   # At least one of commonName (possibly through literalSubject), dnsNames, uris, emailAddresses, ipAddresses or otherNames is required.
   dnsNames:
     - "*.valerauko.net"
+    - "valerauko.net"
 
   # Issuer references are always required.
   issuerRef:
