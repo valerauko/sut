@@ -13,6 +13,7 @@ spec:
   tls:
     - hosts:
         - vpn.dekiru.tech
+      secretName: dekiru-tech-tls
   rules:
     - host: vpn.dekiru.tech
       http:
