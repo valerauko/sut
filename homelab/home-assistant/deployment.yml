@@ -30,4 +30,4 @@ spec:
       tolerations:
         - key: valerauko.net/local
           effect: NoSchedule
-          operator: Existst
+          operator: Exists
