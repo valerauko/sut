@@ -10,6 +10,7 @@ spec:
     rollingUpdate:
       maxSurge: 1
       maxUnavailable: 1
+  revisionHistoryLimit: 3
   selector:
     matchLabels:
       app: home-assistant
