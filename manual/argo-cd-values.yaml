@@ -1,4 +1,7 @@
 name: argo-cd
+crds.install: true
+global:
+  domain: argo.dekiru.tech
 controller:
   metrics:
     enabled: true
@@ -7,19 +10,22 @@ controller:
         prometheus.io/scrape: "true"
         prometheus.io/port: "8082"
   affinity:
-    nodeAffinity:
+    podAntiAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-        - matchExpressions:
-          - key: node-role.kubernetes.io/master
-            operator: DoesNotExist
+        - labelSelector:
+            matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                  - argocd-repo-server
+          topologyKey: kubernetes.io/hostname
   livenessProbe:
     timeoutSeconds: "30"
   readinessProbe:
     timeoutSeconds: "30"
 server:
   extraArgs:
-  - "--insecure"
+    - "--insecure"
   metrics:
     enabled: true
     service:
@@ -30,36 +36,40 @@ server:
     timeoutSeconds: "30"
   readinessProbe:
     timeoutSeconds: "30"
-  affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-        - matchExpressions:
-          - key: node-role.kubernetes.io/master
-            operator: DoesNotExist
   ingress:
     enabled: true
+    ingressClassName: traefik
     annotations:
       kubernetes.io/ingress.class: traefik
       ingress.kubernetes.io/protocol: http
-    hosts:
-    - argo.dekiru.tech
-    tls:
-    - hosts:
-      - argo.dekiru.tech
+    extraTls:
+      - hosts:
+        - argo.dekiru.tech
 repoServer:
   extraArgs:
     - "--parallelismlimit=1"
   affinity:
-    nodeAffinity:
+    podAntiAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-        - matchExpressions:
-          - key: node-role.kubernetes.io/master
-            operator: DoesNotExist
+        - labelSelector:
+            matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                  - argocd-application-controller
+          topologyKey: kubernetes.io/hostname
   metrics:
     enabled: true
     service:
       annotations:
         prometheus.io/scrape: "true"
         prometheus.io/port: "8084"
+configs:
+  params:
+    server.insecure: "true"
+  repositories:
+    docker-registry:
+      url: registry-1.docker.io
+      name: docker-registry
+      enableOCI: "true"
+      type: helm
