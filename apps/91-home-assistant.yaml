@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: home-assistant
+  namespace: argo-cd
+  annotations:
+    argocd.argoproj.io/sync-wave: "91"
+spec:
+  project: system
+  source:
+    repoURL: https://github.com/valerauko/sut.git
+    targetRevision: master
+    path: homelab/home-assistant
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+
+  syncPolicy:
+    automated:
+      selfHeal: true
