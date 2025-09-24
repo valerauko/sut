@@ -1,0 +1,33 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: home-assistant
+  labels:
+    app: home-assistant
+data:
+  nginx.conf: |
+    events {
+    }
+    http {
+      include /etc/nginx/mime.types;
+
+      server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        server_name _;
+
+        client_max_body_size 20M;
+
+        location = /favicon.ico { log_not_found off; access_log off; }
+        location = /robots.txt  { log_not_found off; access_log off; }
+
+        proxy_buffers 8 16k;
+        proxy_buffer_size 16k;
+
+        location / {
+          proxy_set_header Host $http_host;
+          proxy_pass http://homeassistant.local:8123;
+        }
+      }
+    }
