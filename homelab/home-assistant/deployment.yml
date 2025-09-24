@@ -30,6 +30,10 @@ spec:
             - mountPath: /etc/nginx/nginx.conf
               name: nginx-config-volume
               subPath: nginx.conf
+      tolerations:
+        - key: valerauko.net/local
+          effect: NoSchedule
+          operator: Exists
       volumes:
         - name: nginx-config-volume
           configMap:
