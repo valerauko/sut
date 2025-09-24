@@ -27,7 +27,7 @@ data:
 
         location / {
           proxy_set_header Host $http_host;
-          proxy_pass http://homeassistant.local:8123;
+          proxy_pass http://192.168.0.214:8123;
         }
       }
     }
