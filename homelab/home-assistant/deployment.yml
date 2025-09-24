@@ -23,19 +23,11 @@ spec:
     spec:
       containers:
         - name: front-proxy
-          image: nginx:1.29.1
+          image: valerauko/climbing:sha-623a47d
           ports:
             - name: http
               containerPort: 80
-          volumeMounts:
-            - mountPath: /etc/nginx/nginx.conf
-              name: nginx-config-volume
-              subPath: nginx.conf
       tolerations:
         - key: valerauko.net/local
           effect: NoSchedule
-          operator: Exists
-      volumes:
-        - name: nginx-config-volume
-          configMap:
-            name: home-assistant
+          operator: Existst
