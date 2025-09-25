@@ -16,3 +16,7 @@ spec:
     server: https://kubernetes.default.svc
   - namespace: immich
     server: https://kubernetes.default.svc
+
+  clusterResourceWhitelist:
+  - group: 'storage.k8s.io'
+    kind: StorageClass
