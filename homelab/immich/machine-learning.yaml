@@ -51,9 +51,9 @@ spec:
                 name: immich
             - secretRef:
                 name: immich
-          # volumeMounts:
-          #   - name: machine-learning
-          #     mountPath: /cache
+          volumeMounts:
+            - name: machine-learning
+              mountPath: /cache
       volumes:
         - name: machine-learning
           persistentVolumeClaim:

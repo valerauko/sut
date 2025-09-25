@@ -54,9 +54,9 @@ spec:
           env:
             - name: POSTGRES_INITDB_ARGS
               value: '--data-checksums'
-          # volumeMounts:
-          #   - name: database
-          #     mountPath: /var/lib/postgresql/data
+          volumeMounts:
+            - name: database
+              mountPath: /var/lib/postgresql/data
       volumes:
         - name: database
           persistentVolumeClaim:

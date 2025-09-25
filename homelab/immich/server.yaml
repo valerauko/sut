@@ -34,9 +34,9 @@ spec:
                 name: immich
             - secretRef:
                 name: immich
-          # volumeMounts:
-          #   - name: uploads
-          #     mountPath: /data
+          volumeMounts:
+            - name: uploads
+              mountPath: /data
       volumes:
         - name: uploads
           persistentVolumeClaim:
