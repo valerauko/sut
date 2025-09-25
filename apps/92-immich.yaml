@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: immich
+  namespace: argo-cd
+  annotations:
+    argocd.argoproj.io/sync-wave: "92"
+spec:
+  project: sites
+  source:
+    repoURL: https://github.com/valerauko/sut.git
+    targetRevision: master
+    path: homelab/immich
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: immich
+
+  syncPolicy:
+    automated:
+      selfHeal: true

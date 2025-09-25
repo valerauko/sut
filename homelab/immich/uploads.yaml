@@ -1,0 +1,30 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: immich
+  labels:
+    app: immich
+    role: storage
+provisioner: rancher.io/local-path
+parameters:
+  nodePath: /media/onigurumi
+  pathPattern: Photos
+volumeBindingMode: WaitForFirstConsumer
+reclaimPolicy: Retain
+
+---
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: immich-uploads
+  labels:
+    app: immich
+    role: storage
+spec:
+  accessModes:
+    - readWriteOnce
+  resources:
+    requests:
+      storage: 300Gi
+  storageClass: immich

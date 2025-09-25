@@ -1,0 +1,79 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: machine-learning
+  labels:
+    app: immich
+    role: machine-learning
+spec:
+  accessModes:
+    - readWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClass: local-path
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: immich-machine-learning
+  labels:
+    app: immich
+    role: machine-learning
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: immich
+      role: machine-learning
+  template:
+    metadata:
+      labels:
+        app: immich
+        role: machine-learning
+    spec:
+      nodeName: homelab
+      containers:
+        - name: machine-learning
+          image: ghcr.io/immich-app/immich-server
+          ports:
+            - name: http
+              containerPort: 3003
+          envFrom:
+            - configMapRef:
+                name: immich
+            - secretRef:
+                name: immich
+          volumeMounts:
+            - name: machine-learning
+              mountPath: /cache
+      volumes:
+        - name: machine-learning
+          persistentVolumeClaim:
+            claimName: machine-learning
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: machine-learning
+  labels:
+    app: immich
+    role: machine-learning
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: immich
+    role: machine-learning

@@ -1,0 +1,12 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: immich
+  labels:
+    app: immich
+    role: config
+data:
+  POSTGRES_DB: immich
+  DB_HOSTNAME: postgres.immich.svc.cluster.local
+  REDIS_HOSTNAME: redis.immich.svc.cluster.local
+  IMMICH_MACHINE_LEARNING_URL: http://machine-learning.immich.svc.cluster.local:3003

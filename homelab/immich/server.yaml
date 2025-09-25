@@ -1,0 +1,90 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: immich-server
+  labels:
+    app: immich
+    role: server
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: immich
+      role: server
+  template:
+    metadata:
+      labels:
+        app: immich
+        role: server
+    spec:
+      nodeName: homelab
+      containers:
+        - name: server
+          image: ghcr.io/immich-app/immich-server
+          ports:
+            - name: http
+              containerPort: 2283
+          envFrom:
+            - configMapRef:
+                name: immich
+            - secretRef:
+                name: immich
+          volumeMounts:
+            - name: uploads
+              mountPath: /data
+      volumes:
+        - name: uploads
+          persistentVolumeClaim:
+            claimName: uploads
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: immich-server
+  labels:
+    app: immich
+    role: server
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: immich
+    role: server
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: immich-server
+  labels:
+    app: immich
+    role: server
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  tls:
+    - hosts:
+        - photos.erdos.tech
+      secretName: erdos-tech-tls
+  rules:
+    - host: photos.erdos.tech
+      http:
+        paths:
+          - backend:
+              service:
+                name: immich-server
+                port:
+                  name: http
+            path: /
+            pathType: Prefix

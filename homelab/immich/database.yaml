@@ -1,0 +1,80 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: postgres
+  labels:
+    app: immich
+    role: db
+spec:
+  accessModes:
+    - readWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClass: local-path
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  labels:
+    app: immich
+    role: db
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: immich
+      role: db
+  template:
+    metadata:
+      labels:
+        app: immich
+        role: db
+    spec:
+      nodeName: homelab
+      containers:
+        - name: postgres
+          image: ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0@sha256:c44be5f2871c59362966d71eab4268170eb6f5653c0e6170184e72b38ffdf107
+          ports:
+            - name: postgres
+              containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: immich
+            - secretRef:
+                name: immich
+          environment:
+            POSTGRES_INITDB_ARGS: '--data-checksums'
+          volumeMounts:
+            - name: database
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: database
+          persistentVolumeClaim:
+            claimName: postgres
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  labels:
+    app: immich
+    role: db
+spec:
+  type: ClusterIP
+  ports:
+    - port: 6379
+      protocol: TCP
+      name: postgres
+  selector:
+    app: immich
+    role: db
