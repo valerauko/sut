@@ -5,9 +5,9 @@ metadata:
   labels:
     app: home-assistant
   annotations:
-    kubernetes.io/ingress.class: traefik
+    kubernetes.io/ingress.class: tailscale
 spec:
-  ingressClassName: traefik
+  ingressClassName: tailscale
   tls:
     - hosts:
       - home.dekiru.tech
