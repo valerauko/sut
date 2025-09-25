@@ -7,7 +7,7 @@ metadata:
 spec:
   externalName: ts-home-assistant-ngzpx.tailscale.svc.cluster.local
   type: ExternalName
-  ports:
-    - port: 8123
-      protocol: TCP
-      name: http
+  # ports:
+  #   - port: 8123
+  #     protocol: TCP
+  #     name: http
