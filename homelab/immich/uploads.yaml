@@ -9,7 +9,7 @@ provisioner: rancher.io/local-path
 parameters:
   nodePath: /media/onigurumi
   pathPattern: Photos
-volumeBindingMode: WaitForFirstConsumer
+volumeBindingMode: Immediate
 reclaimPolicy: Retain
 
 ---
