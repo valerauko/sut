@@ -45,6 +45,8 @@ spec:
           operator: Exists
           effect: NoSchedule
       containers:
+        - name: busy
+          image: k8s.gcr.io/busybox:latest
         - name: machine-learning
           image: ghcr.io/immich-app/immich-machine-learning:release
           ports:
