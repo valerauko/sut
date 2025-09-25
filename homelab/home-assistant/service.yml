@@ -3,11 +3,11 @@ kind: Service
 metadata:
   annotations:
     tailscale.com/tailnet-ip: 100.115.141.93
+    tailscale.com/proxy-group: home-assistant
   name: home-assistant
 spec:
   externalName: ts-home-assistant-7vhrg.tailscale.svc.cluster.local
   type: ExternalName
-  clusterIP: null
   ports:
     - port: 8123
       protocol: TCP
