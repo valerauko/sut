@@ -5,7 +5,7 @@ metadata:
     tailscale.com/tailnet-ip: 100.115.141.93
   name: home-assistant
 spec:
-  externalName: ts-home-assistant-ngzpx.tailscale.svc.cluster.local
+  externalName: ts-home-assistant-7vhrg.tailscale.svc.cluster.local
   type: ExternalName
   clusterIp: 10.43.42.1
   ports:
