@@ -16,6 +16,10 @@ spec:
     matchLabels:
       app: immich
       role: server
+  tolerations:
+    - key: valerauko.net/local
+      operator: Exists
+      effect: NoSchedule
   template:
     metadata:
       labels:
