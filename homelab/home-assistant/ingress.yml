@@ -5,13 +5,13 @@ metadata:
   labels:
     app: home-assistant
   annotations:
-    kubernetes.io/ingress.class: traefik
+    kubernetes.io/ingress.class: tailscale
   namespace: tailscale
 spec:
-  ingressClassName: traefik
+  ingressClassName: tailscale
   tls:
     - hosts:
-      - home.dekiru.tech
+        - home.dekiru.tech
       secretName: dekiru-tech-tls
   rules:
     - host: home.dekiru.tech
