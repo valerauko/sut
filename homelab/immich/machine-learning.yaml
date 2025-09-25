@@ -41,7 +41,7 @@ spec:
       nodeName: homelab
       containers:
         - name: machine-learning
-          image: ghcr.io/immich-app/immich-server
+          image: ghcr.io/immich-app/immich-machine-learning:release
           ports:
             - name: http
               containerPort: 3003

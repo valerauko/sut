@@ -24,7 +24,7 @@ spec:
       nodeName: homelab
       containers:
         - name: server
-          image: ghcr.io/immich-app/immich-server
+          image: ghcr.io/immich-app/immich-server:release
           ports:
             - name: http
               containerPort: 2283
