@@ -27,4 +27,4 @@ spec:
   resources:
     requests:
       storage: 300Gi
-  storageClass: immich
+  storageClassName: immich
