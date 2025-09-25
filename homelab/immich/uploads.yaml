@@ -23,7 +23,7 @@ metadata:
     role: storage
 spec:
   accessModes:
-    - readWriteOnce
+    - ReadWriteOnce
   resources:
     requests:
       storage: 300Gi
