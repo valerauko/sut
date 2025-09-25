@@ -1,0 +1,44 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: headscale
+  namespace: argo-cd
+  annotations:
+    argocd.argoproj.io/sync-wave: "15"
+spec:
+  project: system
+  source:
+    repoURL: https://ghcr.io/kapernikov/charts/headscale
+    chart: headscale
+    targetRevision: "*"
+
+    helm:
+      releaseName: headscale
+
+      values: |
+        ingress:
+          enabled: true
+          className: traefik
+          annotations:
+            kubernetes.io/ingress.class: traefik
+          hosts:
+            - host: vpn.dekiru.tech
+              paths:
+                - path: /
+                  pathType: Prefix
+          tls:
+            - hosts:
+                - vpn.dekiru.tech
+              secretName: dekiru-tech-tls
+        ui:
+          enabled: true
+        client:
+          enabled: false
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: headscale
+
+  syncPolicy:
+    automated:
+      selfHeal: true
