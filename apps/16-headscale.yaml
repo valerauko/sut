@@ -8,9 +8,9 @@ metadata:
 spec:
   project: system
   source:
-    repoURL: https://ghcr.io/kapernikov/charts
-    chart: headscale
-    targetRevision: "0.1.0"
+    repoURL: https://github.com/Kapernikov/headscale-helm
+    path: headscale
+    targetRevision: "v0.1.0"
 
     helm:
       releaseName: headscale
