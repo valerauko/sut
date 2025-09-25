@@ -33,10 +33,6 @@ spec:
     matchLabels:
       app: immich
       role: machine-learning
-  tolerations:
-    - key: valerauko.net/local
-      operator: Exists
-      effect: NoSchedule
   template:
     metadata:
       labels:
@@ -44,6 +40,10 @@ spec:
         role: machine-learning
     spec:
       nodeName: homelab
+      tolerations:
+        - key: valerauko.net/local
+          operator: Exists
+          effect: NoSchedule
       containers:
         - name: machine-learning
           image: ghcr.io/immich-app/immich-machine-learning:release

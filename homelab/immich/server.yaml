@@ -16,10 +16,6 @@ spec:
     matchLabels:
       app: immich
       role: server
-  tolerations:
-    - key: valerauko.net/local
-      operator: Exists
-      effect: NoSchedule
   template:
     metadata:
       labels:
@@ -27,6 +23,10 @@ spec:
         role: server
     spec:
       nodeName: homelab
+      tolerations:
+        - key: valerauko.net/local
+          operator: Exists
+          effect: NoSchedule
       containers:
         - name: server
           image: ghcr.io/immich-app/immich-server:release
