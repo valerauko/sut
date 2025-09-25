@@ -4,13 +4,13 @@ metadata:
   name: headscale
   namespace: argo-cd
   annotations:
-    argocd.argoproj.io/sync-wave: "15"
+    argocd.argoproj.io/sync-wave: "16"
 spec:
   project: system
   source:
     repoURL: https://ghcr.io/kapernikov/charts/headscale
     chart: headscale
-    targetRevision: "*"
+    targetRevision: "0.1.0"
 
     helm:
       releaseName: headscale
