@@ -7,7 +7,7 @@ metadata:
 spec:
   externalName: ts-home-assistant-7vhrg.tailscale.svc.cluster.local
   type: ExternalName
-  clusterIp: 10.43.42.1
+  clusterIP: 10.43.42.1
   ports:
     - port: 8123
       protocol: TCP
