@@ -19,7 +19,7 @@ spec:
         paths:
           - backend:
               service:
-                name: home-assistant
+                name: ts-home-assistant-vq4vs
                 port:
                   name: http
             path: /
