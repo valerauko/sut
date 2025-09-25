@@ -6,7 +6,7 @@ metadata:
     tailscale.com/proxy-group: home-assistant
   name: home-assistant
 spec:
-  externalName: ts-home-assistant-7vhrg.tailscale.svc.cluster.local
+  externalName: ts-home-assistant-md9wp.tailscale.svc.cluster.local
   type: ExternalName
   ports:
     - port: 8123
