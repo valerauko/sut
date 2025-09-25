@@ -79,7 +79,7 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-    - port: 6379
+    - port: 5432
       protocol: TCP
       name: postgres
   selector:
