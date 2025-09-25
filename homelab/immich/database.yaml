@@ -50,8 +50,9 @@ spec:
                 name: immich
             - secretRef:
                 name: immich
-          environment:
-            POSTGRES_INITDB_ARGS: '--data-checksums'
+          env:
+            - name: POSTGRES_INITDB_ARGS
+              value: '--data-checksums'
           volumeMounts:
             - name: database
               mountPath: /var/lib/postgresql/data
