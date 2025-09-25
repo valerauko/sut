@@ -39,7 +39,6 @@ spec:
         app: immich
         role: machine-learning
     spec:
-      nodeName: homelab
       tolerations:
         - key: valerauko.net/local
           operator: Exists
