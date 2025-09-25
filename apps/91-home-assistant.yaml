@@ -16,6 +16,11 @@ spec:
     server: https://kubernetes.default.svc
     namespace: default
 
+  ignoreDifferences:
+    - kind: Service
+      jsonPointers:
+        - /spec/externalName
+
   syncPolicy:
     automated:
       selfHeal: true
