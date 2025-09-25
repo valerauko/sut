@@ -3,9 +3,10 @@ kind: Service
 metadata:
   annotations:
     tailscale.com/tailnet-ip: 100.115.141.93
+    tailscale.com/proxy-group: tailscale-proxy
   name: home-assistant
 spec:
-  externalName: ts-home-assistant-md9wp.tailscale.svc.cluster.local
+  externalName: override
   type: ExternalName
   ports:
     - port: 8123
