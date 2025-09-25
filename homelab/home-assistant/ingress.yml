@@ -19,7 +19,7 @@ spec:
         paths:
           - backend:
               service:
-                name: ts-home-assistant-9s599
+                name: home-assistant
                 port:
                   name: http
             path: /
