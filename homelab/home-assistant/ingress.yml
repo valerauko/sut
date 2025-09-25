@@ -12,14 +12,8 @@ spec:
     - hosts:
       - home.dekiru.tech
       secretName: dekiru-tech-tls
-  rules:
-    - host: home.dekiru.tech
-      http:
-        paths:
-          - backend:
-              service:
-                name: home-assistant
-                port:
-                  name: http
-            path: /
-            pathType: Prefix
+  defaultBackend:
+    service:
+      name: home-assistant
+      port:
+        name: http
