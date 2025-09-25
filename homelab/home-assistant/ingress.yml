@@ -5,10 +5,10 @@ metadata:
   labels:
     app: home-assistant
   annotations:
-    kubernetes.io/ingress.class: tailscale
+    kubernetes.io/ingress.class: traefik
   namespace: tailscale
 spec:
-  ingressClassName: tailscale
+  ingressClassName: traefik
   tls:
     - hosts:
         - home.dekiru.tech
@@ -19,7 +19,9 @@ spec:
         paths:
           - backend:
               service:
-                name: home-assistant
+                # the ExternalName Service doesn't seem to work as documented
+                # name: home-assistant
+                name: ts-home-assistant-vq4vs
                 port:
                   name: http
             path: /
