@@ -12,8 +12,6 @@ spec:
       maxSurge: 1
       maxUnavailable: 1
   revisionHistoryLimit: 1
-  nodeSelector:
-    kubernetes.io/hostname: homelab
   selector:
     matchLabels:
       app: immich
@@ -29,6 +27,8 @@ spec:
         - key: valerauko.net/local
           operator: Exists
           effect: NoSchedule
+      nodeSelector:
+        kubernetes.io/hostname: homelab
       containers:
         - name: server
           image: ghcr.io/immich-app/immich-server:release
