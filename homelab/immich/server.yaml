@@ -39,7 +39,7 @@ spec:
       volumes:
         - name: uploads
           persistentVolumeClaim:
-            claimName: uploads
+            claimName: immich-uploads
 
 ---
 
