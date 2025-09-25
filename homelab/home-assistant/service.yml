@@ -5,5 +5,9 @@ metadata:
     tailscale.com/tailnet-ip: 100.115.141.93
   name: home-assistant
 spec:
-  externalName: override
+  externalName: ts-home-assistant-plv2r.tailscale.svc.cluster.local
   type: ExternalName
+  ports:
+    - port: 8123
+      protocol: TCP
+      name: http
