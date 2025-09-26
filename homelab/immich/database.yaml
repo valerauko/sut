@@ -82,6 +82,7 @@ spec:
     - port: 5432
       protocol: TCP
       name: postgres
+      targetPort: postgres
   selector:
     app: immich
     role: db
