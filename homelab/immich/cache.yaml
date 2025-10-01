@@ -21,7 +21,12 @@ spec:
         app: immich
         role: cache
     spec:
-      nodeName: homelab
+      tolerations:
+        - key: valerauko.net/local
+          operator: Exists
+          effect: NoSchedule
+      nodeSelector:
+        kubernetes.io/hostname: homelab
       containers:
         - name: cache
           image: docker.io/valkey/valkey:8-alpine
