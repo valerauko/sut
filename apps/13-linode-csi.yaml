@@ -23,7 +23,7 @@ spec:
           regionRef: region
         controller:
           nodeSelector:
-            topology.linode.com/region=ap-northeast
+            topology.linode.com/region: ap-northeast
 
   destination:
     server: https://kubernetes.default.svc
