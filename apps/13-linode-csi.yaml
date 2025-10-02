@@ -21,6 +21,9 @@ spec:
           name: linode
           apiTokenRef: token
           regionRef: region
+        controller:
+          nodeSelector:
+            topology.linode.com/region=ap-northeast
 
   destination:
     server: https://kubernetes.default.svc
