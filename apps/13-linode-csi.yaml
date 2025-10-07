@@ -21,6 +21,13 @@ spec:
           name: linode
           apiTokenRef: token
           regionRef: region
+        csiNodeDriverRegistrar:
+          env:
+            - name: LINODE_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: linode
+                  key: token
         controller:
           nodeSelector:
             topology.linode.com/region: ap-northeast
