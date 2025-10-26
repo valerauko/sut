@@ -45,6 +45,8 @@ spec:
               mountPath: /library/Anime
             - name: movies
               mountPath: /library/Movies
+            - name: music
+              mountPath: /library/Music
             - name: shows
               mountPath: /library/Shows
       volumes:
@@ -60,6 +62,9 @@ spec:
         - name: movies
           hostPath:
             path: /media/hinoki/Movies
+        - name: music
+          hostPath:
+            path: /media/onigurumi/Music
         - name: shows
           hostPath:
             path: /media/hinoki/Shows
