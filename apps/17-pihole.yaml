@@ -27,15 +27,18 @@ spec:
         capabilities:
           add:
             - NET_ADMIN
-            - NET_BIND_SERVICE
         nodeSelector:
           kubernetes.io/hostname: homelab
         admin:
           existingSecret: pihole-admin
         serviceDns:
           mixedService: true
+          type: LoadBalancer
+          loadBalancerIP: "192.168.0.204"
           nodePort: "53"
         serviceDhcp:
+          type: LoadBalancer
+          loadBalancerIP: "192.168.0.204"
           nodePort: "67"
         DNS1: 94.140.14.14
         DNS2: 1.1.1.1
