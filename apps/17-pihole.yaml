@@ -33,6 +33,9 @@ spec:
           existingSecret: pihole-admin
         serviceDns:
           mixedService: true
+          nodePort: "53"
+        serviceDhcp:
+          nodePort: "67"
         DNS1: 94.140.14.14
         DNS2: 1.1.1.1
 
