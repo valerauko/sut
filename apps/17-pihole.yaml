@@ -20,6 +20,9 @@ spec:
           enabled: true
         virtualHost: dns.dekiru.tech
         ingress:
+          enabled: true
+          hosts:
+            - dns.dekiru.tech
           tls:
             - hosts:
                 - dns.dekiru.tech
