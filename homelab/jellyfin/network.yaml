@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: jellyfin-server
+  labels:
+    app: jellyfin
+    role: server
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8096
+      targetPort: http
+      protocol: TCP
+      name: http
+    - port: 1900
+      targetPort: dlna
+      protocol: UDP
+      name: dlna
+  selector:
+    app: jellyfin
+    role: server
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: jellyfin-server
+  labels:
+    app: jellyfin
+    role: server
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  tls:
+    - hosts:
+        - media.dekiru.tech
+      secretName: dekiru-tech-tls
+  rules:
+    - host: media.dekiru.tech
+      http:
+        paths:
+          - backend:
+              service:
+                name: jellyfin-server
+                port:
+                  name: http
+            path: /
+            pathType: Prefix

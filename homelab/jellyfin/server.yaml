@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jellyfin-server
+  labels:
+    app: jellyfin
+    role: server
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: jellyfin
+      role: server
+  template:
+    metadata:
+      labels:
+        app: jellyfin
+        role: server
+    spec:
+      tolerations:
+        - key: valerauko.net/local
+          operator: Exists
+          effect: NoSchedule
+      nodeSelector:
+        kubernetes.io/hostname: homelab
+      containers:
+        - name: server
+          image: docker.io/jellyfin/jellyfin:v10.11.0
+          ports:
+            - name: http
+              containerPort: "8096/tcp"
+            - name: dlna
+              containerPort: "1900/udp"
+          envFrom:
+            - configMapRef:
+                name: jellyfin
+            - secretRef:
+                name: jellyfin
+          volumeMounts:
+            - name: cache
+              mountPath: /cache
+            - name: config
+              mountPath: /config
+            - name: anime
+              mountPath: /library/Anime
+            - name: movies
+              mountPath: /library/Movies
+            - name: shows
+              mountPath: /library/Shows
+      volumes:
+        - name: cache
+          persistentVolumeClaim:
+            claimName: jellyfin-cache
+        - name: config
+          persistentVolumeClaim:
+            claimName: jellyfin-config
+        - name: anime
+          hostPath:
+            path: /media/hinoki/Anime
+        - name: movies
+          hostPath:
+            path: /media/hinoki/Movies
+        - name: shows
+          hostPath:
+            path: /media/hinoki/Shows
