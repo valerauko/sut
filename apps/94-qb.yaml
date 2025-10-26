@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: qbittorrent
+  namespace: argo-cd
+  annotations:
+    argocd.argoproj.io/sync-wave: "94"
+spec:
+  project: homelab
+  source:
+    repoURL: https://github.com/valerauko/sut.git
+    targetRevision: master
+    path: homelab/qb
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: qb
+
+  syncPolicy:
+    automated:
+      selfHeal: true

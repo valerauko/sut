@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qbittorrent
+  labels:
+    app: qbittorrent
+    role: server
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    app: qbittorrent
+    role: server
+  template:
+    metadata:
+      labels:
+        app: qbittorrent
+        role: server
+    spec:
+      tolerations:
+        - key: valerauko.net/local
+          operator: Exists
+          effect: NoSchedule
+      nodeSelector:
+        kubernetes.io/hostname: homelab
+      containers:
+        - name: server
+          image: qbittorrentofficial/qbittorrent-nox:5.1.2-2
+          ports:
+            - name: http
+              containerPort: 8080
+            - name: trnt
+              containerPort: 6881
+          env:
+            - name: QBT_LEGAL_NOTICE
+              value: confirm
+            - name: QBT_TORRENTING_PORT
+              value: "6881"
+            - name: QBT_WEBUI_PORT
+              value: "8080"
+          volumeMounts:
+            - mountPath: /tmp
+              name: qtmp
+      volumes:
+        - name: qtmp
+          emptyDir:
+            sizeLimit: 1Gi
+            medium: Memory

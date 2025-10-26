@@ -37,3 +37,10 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: pihole
+
+---
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: qb
