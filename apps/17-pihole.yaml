@@ -34,10 +34,8 @@ spec:
         serviceDns:
           mixedService: true
           type: LoadBalancer
-          loadBalancerIP: "192.168.0.204"
         serviceDhcp:
           type: LoadBalancer
-          loadBalancerIP: "192.168.0.204"
         DNS1: 94.140.14.14
         DNS2: 1.1.1.1
 
