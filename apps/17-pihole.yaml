@@ -21,6 +21,8 @@ spec:
         virtualHost: dns.dekiru.tech
         ingress:
           enabled: true
+          annotations:
+            kubernetes.io/ingress.class: traefik
           hosts:
             - dns.dekiru.tech
           tls:
