@@ -33,9 +33,9 @@ spec:
           image: docker.io/jellyfin/jellyfin:v10.11.0
           ports:
             - name: http
-              containerPort: "8096/tcp"
+              containerPort: 8096
             - name: dlna
-              containerPort: "1900/udp"
+              containerPort: 1900
           envFrom:
             - configMapRef:
                 name: jellyfin
