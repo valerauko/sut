@@ -49,6 +49,8 @@ spec:
           persistence:
             storageClass: "linode-block-storage-retain"
             size: "15Gi"
+          nodeSelector:
+            topology.linode.com/region: ap-northeast
         metrics:
           enabled: false
 
