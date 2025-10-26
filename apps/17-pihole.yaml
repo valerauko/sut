@@ -10,12 +10,14 @@ spec:
   source:
     repoURL: https://mojo2600.github.io/pihole-kubernetes
     chart: pihole
-    targetRevision: "2.*"
+    targetRevision: "2.34.*"
 
     helm:
       releaseName: pihole
 
       values: |
+        image:
+          tag: "2025.10.1"
         persistentVolumeClaim:
           enabled: true
         virtualHost: dns.dekiru.tech
