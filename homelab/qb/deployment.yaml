@@ -41,10 +41,24 @@ spec:
               value: "6881"
             - name: QBT_WEBUI_PORT
               value: "8080"
+            - name: QBT_CONFIG_PATH
+              value: /usr/local/qbt/config
+            - name: QBT_DOWNLOADS_PATH
+              value: /usr/local/qbt/downloads
           volumeMounts:
             - mountPath: /tmp
               name: qtmp
+            - mountPath: /usr/local/qbt/config
+              name: config
+            - mountPath: /usr/local/qbt/downloads
+              name: downloads
       volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: qbittorrent-config
+        - name: downloads
+          hostPath:
+            path: /media/hinoki/Downloads
         - name: qtmp
           emptyDir:
             sizeLimit: 1Gi

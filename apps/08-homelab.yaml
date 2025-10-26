@@ -18,6 +18,8 @@ spec:
     server: https://kubernetes.default.svc
   - namespace: jellyfin
     server: https://kubernetes.default.svc
+  - namespace: qb
+    server: https://kubernetes.default.svc
 
   clusterResourceWhitelist:
   - group: 'storage.k8s.io'
