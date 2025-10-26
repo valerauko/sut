@@ -33,9 +33,13 @@ spec:
           existingSecret: pihole-admin
         serviceDns:
           mixedService: true
-          nodePort: "53"
+          type: LoadBalancer
+          annotations:
+            kubernetes.io/ingress.class: traefik
         serviceDhcp:
-          nodePort: "67"
+          type: LoadBalancer
+          annotations:
+            kubernetes.io/ingress.class: traefik
         DNS1: 94.140.14.14
         DNS2: 1.1.1.1
 
