@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: homelab
+  namespace: argo-cd
+  annotations:
+    argocd.argoproj.io/sync-wave: "08"
+spec:
+  description: Homelab playground
+
+  sourceRepos:
+  - '*'
+
+  destinations:
+  - namespace: default
+    server: https://kubernetes.default.svc
+  - namespace: immich
+    server: https://kubernetes.default.svc
+  - namespace: jellyfin
+    server: https://kubernetes.default.svc
+
+  clusterResourceWhitelist:
+  - group: 'storage.k8s.io'
+    kind: StorageClass
