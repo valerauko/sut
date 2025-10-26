@@ -18,8 +18,6 @@ spec:
       values: |
         image:
           tag: "2025.10.0"
-        dualStack:
-          enabled: true
         persistentVolumeClaim:
           enabled: true
         virtualHost: dns.dekiru.tech
