@@ -36,11 +36,6 @@ spec:
               containerPort: 8096
             - name: dlna
               containerPort: 1900
-          envFrom:
-            - configMapRef:
-                name: jellyfin
-            - secretRef:
-                name: jellyfin
           volumeMounts:
             - name: cache
               mountPath: /cache
