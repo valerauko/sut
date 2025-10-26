@@ -17,7 +17,7 @@ spec:
 
       values: |
         image:
-          tag: "2025.10.1"
+          tag: "2025.10.0"
         persistentVolumeClaim:
           enabled: true
         virtualHost: dns.dekiru.tech
