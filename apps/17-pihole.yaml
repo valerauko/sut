@@ -1,0 +1,45 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: pihole
+  namespace: argo-cd
+  annotations:
+    argocd.argoproj.io/sync-wave: "16"
+spec:
+  project: system
+  source:
+    repoURL: https://mojo2600.github.io/pihole-kubernetes
+    chart: pihole
+    targetRevision: "2.*"
+
+    helm:
+      releaseName: pihole
+
+      values: |
+        persistentVolumeClaim:
+          enabled: true
+        virtualHost: dns.dekiru.tech
+        ingress:
+          tls:
+            - hosts:
+                - dns.dekiru.tech
+              secretName: dekiru-tech-tls
+        capabilities:
+          add:
+            - NET_ADMIN
+        nodeSelector:
+          kubernetes.io/hostname: homelab
+        admin:
+          existingSecret: pihole-admin
+        serviceDns:
+          mixedService: true
+        DNS1: 94.140.14.14
+        DNS2: 1.1.1.1
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: pihole
+
+  syncPolicy:
+    automated:
+      selfHeal: true
