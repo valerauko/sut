@@ -51,3 +51,10 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: sonarr
+
+---
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: seerr
