@@ -29,6 +29,7 @@ spec:
         kubernetes.io/hostname: homelab
       initContainers:
         - name: gluetun
+          image: ghcr.io/qdm12/gluetun:v3.40.0
           restartPolicy: Always
           securityContext:
             capabilities:
