@@ -33,7 +33,7 @@ spec:
           image: ghcr.io/hotio/sonarr:release-4.0.15.2941
           ports:
             - name: http
-              containerPort: "8989"
+              containerPort: 8989
           env:
             - name: TZ
               value: Asia/Tokyo
