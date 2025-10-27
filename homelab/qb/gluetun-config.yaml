@@ -6,6 +6,6 @@ metadata:
     app: qbittorrent
     role: config
 data:
-  TZ: Asia/Tokyo
-  VPN_TYPE: wireguard
-  OWNED_ONLY: yes
+  TZ: "Asia/Tokyo"
+  VPN_TYPE: "wireguard"
+  OWNED_ONLY: "yes"
