@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: seerr
+  namespace: argo-cd
+  annotations:
+    argocd.argoproj.io/sync-wave: "97"
+spec:
+  project: homelab
+  source:
+    repoURL: oci://ghcr.io/fallenbagel/jellyseerr
+    chart: jellyseerr-chart
+
+    helm:
+      releaseName: seerr
+
+      values: |
+        ingress:
+          enabled: true
+          annotations:
+            kubernetes.io/ingress.class: traefik
+          hosts:
+            - seerr.dekiru.tech
+          tls:
+            - hosts:
+                - seerr.dekiru.tech
+              secretName: dekiru-tech-tls
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: seerr
+
+  syncPolicy:
+    automated:
+      selfHeal: true
