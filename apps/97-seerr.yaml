@@ -26,6 +26,12 @@ spec:
             - hosts:
                 - seerr.dekiru.tech
               secretName: dekiru-tech-tls
+        tolerations:
+          - key: valerauko.net/local
+            operator: Exists
+            effect: NoSchedule
+        nodeSelector:
+          kubernetes.io/hostname: homelab
 
   destination:
     server: https://kubernetes.default.svc
