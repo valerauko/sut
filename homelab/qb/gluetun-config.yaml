@@ -1,0 +1,11 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: gluetun
+  labels:
+    app: qbittorrent
+    role: config
+data:
+  TZ: Asia/Tokyo
+  VPN_TYPE: wireguard
+  OWNED_ONLY: yes

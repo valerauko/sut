@@ -27,6 +27,20 @@ spec:
           effect: NoSchedule
       nodeSelector:
         kubernetes.io/hostname: homelab
+      initContainers:
+        - name: gluetun
+          restartPolicy: Always
+          securityContext:
+            capabilities:
+              add: ["NET_ADMIN"]
+          env:
+            - name: FIREWALL_INPUT_PORTS
+              value: "8080"
+          envFrom:
+            - configMapRef:
+                name: gluetun
+            - secretRef:
+                name: gluetun
       containers:
         - name: server
           image: qbittorrentofficial/qbittorrent-nox:5.1.2-2
