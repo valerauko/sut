@@ -8,4 +8,3 @@ metadata:
 data:
   TZ: "Asia/Tokyo"
   VPN_TYPE: "wireguard"
-  OWNED_ONLY: "yes"
