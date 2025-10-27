@@ -8,9 +8,9 @@ metadata:
 spec:
   project: homelab
   source:
-    repoURL: oci://ghcr.io/fallenbagel/jellyseerr
-    chart: jellyseerr-chart
-    targetRevision: "3.0.*"
+    repoURL: https://github.com/seerr-team/seerr
+    path: charts/seerr-chart
+    targetRevision: 082ba3d
 
     helm:
       releaseName: seerr
