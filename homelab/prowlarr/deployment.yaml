@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prowlarr
+  labels:
+    app: prowlarr
+    role: server
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: prowlarr
+      role: server
+  template:
+    metadata:
+      labels:
+        app: prowlarr
+        role: server
+    spec:
+      tolerations:
+        - key: valerauko.net/local
+          operator: Exists
+          effect: NoSchedule
+      nodeSelector:
+        kubernetes.io/hostname: homelab
+      containers:
+        - name: server
+          image: ghcr.io/hotio/prowlarr:release-2.1.5.5216
+          ports:
+            - name: http
+              containerPort: 9696
+          env:
+            - name: TZ
+              value: Asia/Tokyo
+          volumeMounts:
+            - mountPath: /config
+              name: config
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: prowlarr-config
+
+---
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: prowlarr-config
+  labels:
+    app: prowlarr
+    role: storage
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: local-path

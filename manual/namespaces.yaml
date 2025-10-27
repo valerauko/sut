@@ -43,6 +43,13 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
+  name: prowlarr
+
+---
+
+apiVersion: v1
+kind: Namespace
+metadata:
   name: qb
 
 ---
