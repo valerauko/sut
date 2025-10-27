@@ -10,6 +10,7 @@ spec:
   source:
     repoURL: oci://ghcr.io/fallenbagel/jellyseerr
     chart: jellyseerr-chart
+    targetRevision: "3.0.*"
 
     helm:
       releaseName: seerr
