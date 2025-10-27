@@ -37,7 +37,9 @@ spec:
               add: ["NET_ADMIN"]
           env:
             - name: FIREWALL_INPUT_PORTS
-              value: "8080"
+              value: "8080,6881"
+            - name: FIREWALL_VPN_INPUT_PORTS
+              value: "8080,6881"
           envFrom:
             - configMapRef:
                 name: gluetun
