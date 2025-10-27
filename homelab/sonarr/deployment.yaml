@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sonarr
+  labels:
+    app: sonarr
+    role: server
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: sonarr
+      role: server
+  template:
+    metadata:
+      labels:
+        app: sonarr
+        role: server
+    spec:
+      tolerations:
+        - key: valerauko.net/local
+          operator: Exists
+          effect: NoSchedule
+      nodeSelector:
+        kubernetes.io/hostname: homelab
+      containers:
+        - name: server
+          image: ghcr.io/hotio/sonarr:release-4.0.15.2941
+          ports:
+            - name: http
+              containerPort: "8989"
+          env:
+            - name: TZ
+              value: Asia/Tokyo
+          volumeMounts:
+            - mountPath: /config
+              name: config
+            - mountPath: /data
+              name: data
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: sonarr-config
+        - name: data
+          hostPath:
+            path: /media/hinoki
+
+---
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: sonarr-config
+  labels:
+    app: sonarr
+    role: storage
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: local-path
