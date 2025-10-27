@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: sonarr-server
+  name: sonarr
   labels:
     app: sonarr
     role: server
@@ -38,7 +38,7 @@ spec:
         paths:
           - backend:
               service:
-                name: sonarr-server
+                name: sonarr
                 port:
                   name: http
             path: /
