@@ -42,9 +42,8 @@ spec:
           existingSecret: pihole-admin
         serviceDns:
           mixedService: true
-          type: LoadBalancer
-        serviceDhcp:
-          type: LoadBalancer
+        dnsHostPort:
+          enabled: true
         DNS1: false
 
   destination:
