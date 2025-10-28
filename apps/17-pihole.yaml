@@ -43,8 +43,6 @@ spec:
           type: LoadBalancer
         serviceDhcp:
           type: LoadBalancer
-        DNS1: 94.140.14.14
-        DNS2: 1.1.1.1
 
   destination:
     server: https://kubernetes.default.svc
