@@ -17,7 +17,7 @@ spec:
 
       values: |
         image:
-          tag: "2025.10.0"
+          tag: "2025.10.2"
         persistentVolumeClaim:
           enabled: true
         virtualHost: dns.dekiru.tech
@@ -36,6 +36,8 @@ spec:
             - NET_ADMIN
         nodeSelector:
           kubernetes.io/hostname: homelab
+        maxUnavailable: 1
+        maxSurge: 2
         admin:
           existingSecret: pihole-admin
         serviceDns:
