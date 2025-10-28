@@ -43,6 +43,7 @@ spec:
           type: LoadBalancer
         serviceDhcp:
           type: LoadBalancer
+        DNS1: false
 
   destination:
     server: https://kubernetes.default.svc
