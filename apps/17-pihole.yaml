@@ -17,7 +17,7 @@ spec:
 
       values: |
         image:
-          tag: "2025.10.0"
+          tag: "2025.10.2"
         persistentVolumeClaim:
           enabled: true
         virtualHost: dns.dekiru.tech
@@ -40,9 +40,9 @@ spec:
           existingSecret: pihole-admin
         serviceDns:
           mixedService: true
-          nodePort: 53
+          type: LoadBalancer
         serviceDhcp:
-          nodePort: 67
+          type: LoadBalancer
         DNS1: false
 
   destination:
