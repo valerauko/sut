@@ -43,7 +43,6 @@ spec:
           type: LoadBalancer
         serviceDhcp:
           type: LoadBalancer
-        hostNetwork: "true"
         DNS1: false
 
   destination:
