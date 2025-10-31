@@ -1,7 +1,7 @@
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
-  name: basic-ipv4-pool
+  name: linode
 spec:
   addresses:
     - 172.105.216.240/32
@@ -12,3 +12,26 @@ spec:
     - 100.95.187.86/32
     - 100.110.100.2/32
     - 100.92.110.126/32
+
+---
+
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: tailscale
+spec:
+  addresses:
+    - 100.122.188.126/32
+    - 100.95.187.86/32
+    - 100.110.100.2/32
+    - 100.92.110.126/32
+
+---
+
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: private
+spec:
+  addresses:
+    - 192.168.0.204/32
