@@ -4,4 +4,4 @@ metadata:
   name: basic-ipv4-pool
 spec:
   addresses:
-    - 203.0.113.200/30
+    - 192.168.194.0/24
