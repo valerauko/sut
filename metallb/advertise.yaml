@@ -1,19 +1,7 @@
 apiVersion: metallb.io/v1beta1
 kind: L2Advertisement
 metadata:
-  name: l2-public
+  name: l2-advertise
 spec:
   ipAddressPools:
-    - linode
-    - tailscale
-
----
-
-apiVersion: metallb.io/v1beta1
-kind: L2Advertisement
-metadata:
-  name: l2-local
-spec:
-  ipAddressPools:
-    - tailscale
-    - private
+    - basic-ipv4-pool
