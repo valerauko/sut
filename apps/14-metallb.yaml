@@ -7,27 +7,30 @@ metadata:
     argocd.argoproj.io/sync-wave: "14"
 spec:
   project: system
-  source:
-    repoURL: https://metallb.github.io/metallb
-    chart: metallb
-    targetRevision: "*"
+  sources:
+    - repoURL: https://metallb.github.io/metallb
+      chart: metallb
+      targetRevision: "*"
 
-    helm:
-      releaseName: metallb
+      helm:
+        releaseName: metallb
 
-      values: |
-        controller:
-          tolerations:
-            - key: valerauko.net/local
-              operator: Exists
-              effect: NoSchedule
-        speaker:
-          frr:
-            enabled: true
-          tolerations:
-            - key: valerauko.net/local
-              operator: Exists
-              effect: NoSchedule
+        values: |
+          controller:
+            tolerations:
+              - key: valerauko.net/local
+                operator: Exists
+                effect: NoSchedule
+          speaker:
+            frr:
+              enabled: true
+            tolerations:
+              - key: valerauko.net/local
+                operator: Exists
+                effect: NoSchedule
+    - repoURL: https://github.com/valerauko/sut.git
+      targetRevision: master
+      path: metallb
 
   destination:
     server: https://kubernetes.default.svc
