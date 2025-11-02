@@ -61,6 +61,7 @@ spec:
             extraTls:
               - hosts:
                 - argo.dekiru.tech
+                secretName: dekiru-tech-tls
         repoServer:
           extraArgs:
             - "--parallelismlimit=1"
