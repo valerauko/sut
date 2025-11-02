@@ -41,7 +41,7 @@ spec:
         tlsStore:
           default:
             defaultCertificate:
-              secretName: valerauko-net-tls
+              secretName: dekiru-tech-tls
         ports:
           web:
             redirections:
