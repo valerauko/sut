@@ -7,45 +7,45 @@ metadata:
     argocd.argoproj.io/sync-wave: "16"
 spec:
   project: system
-  source:
-    repoURL: https://mojo2600.github.io/pihole-kubernetes
-    chart: pihole
-    targetRevision: "2.34.*"
+  sources:
+    - repoURL: https://mojo2600.github.io/pihole-kubernetes
+      chart: pihole
+      targetRevision: "2.34.*"
 
-    helm:
-      releaseName: pihole
+      helm:
+        releaseName: pihole
 
-      values: |
-        image:
-          tag: "2025.10.2"
-        persistentVolumeClaim:
-          enabled: true
-        virtualHost: dns.dekiru.tech
-        ingress:
-          enabled: true
-          annotations:
-            kubernetes.io/ingress.class: traefik
-          hosts:
-            - dns.dekiru.tech
-          tls:
-            - hosts:
-                - dns.dekiru.tech
-              secretName: dekiru-tech-tls
-        capabilities:
-          add:
-            - NET_ADMIN
-        nodeSelector:
-          kubernetes.io/hostname: homelab
-        maxUnavailable: 0
-        maxSurge: "10%"
-        admin:
-          existingSecret: pihole-admin
-        serviceDns:
-          mixedService: true
-          type: LoadBalancer
-        serviceDhcp:
-          type: LoadBalancer
-        DNS1: false
+        values: |
+          image:
+            tag: "2025.10.3"
+          persistentVolumeClaim:
+            enabled: true
+          virtualHost: dns.dekiru.tech
+          ingress:
+            enabled: true
+            annotations:
+              kubernetes.io/ingress.class: traefik
+            hosts:
+              - dns.dekiru.tech
+            tls:
+              - hosts:
+                  - dns.dekiru.tech
+                secretName: dekiru-tech-tls
+          capabilities:
+            add:
+              - NET_ADMIN
+          nodeSelector:
+            kubernetes.io/hostname: homelab
+          maxUnavailable: 0
+          maxSurge: "10%"
+          admin:
+            existingSecret: pihole-admin
+          serviceDns:
+            mixedService: true
+            type: LoadBalancer
+          serviceDhcp:
+            type: LoadBalancer
+          DNS1: false
 
   destination:
     server: https://kubernetes.default.svc
