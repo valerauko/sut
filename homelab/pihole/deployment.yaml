@@ -24,7 +24,7 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
             - labelSelector:
                 matchLabels:
-              app: pihole-test
+                  app: pihole-test
               topologyKey: topology.linode.com/region
       containers:
       - env:
