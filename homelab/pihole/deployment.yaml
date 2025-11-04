@@ -13,7 +13,7 @@ spec:
   strategy:
     rollingUpdate:
       maxUnavailable: 50%
-      maxSurge: 50%
+      maxSurge: 0
     type: RollingUpdate
   template:
     metadata:
@@ -42,7 +42,7 @@ spec:
               key: password
               name: pihole-admin
         - name: FTLCONF_dns_listeningMode
-          value: all
+          value: ALL
         image: pihole/pihole:2025.10.3
         name: pihole
         ports:
