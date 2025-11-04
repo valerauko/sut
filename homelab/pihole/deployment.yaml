@@ -21,15 +21,6 @@ spec:
         app: pihole-test
     spec:
       affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: topology.kubernetes.io/hostname
-                operator: In
-                values:
-                - homelab
-                - tyo-02
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             - labelSelector:
@@ -37,7 +28,11 @@ spec:
                   app: pihole-test
               topologyKey: kubernetes.io/hostname
       containers:
-      - env:
+      - name: pihole
+        image: pihole/pihole:2025.10.3
+        nodeSelector:
+          node-role.kubernetes.io/dns: dns
+        env:
         - name: VIRTUAL_HOST
           value: dns.dekiru.tech
         - name: FTLCONF_webserver_api_password
@@ -47,8 +42,6 @@ spec:
               name: pihole-admin
         - name: FTLCONF_dns_listeningMode
           value: ALL
-        image: pihole/pihole:2025.10.3
-        name: pihole
         ports:
         - containerPort: 80
           name: http
