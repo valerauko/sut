@@ -76,8 +76,7 @@ spec:
       dnsPolicy: None
       volumes:
       - name: config
-        persistentVolumeClaim:
-          claimName: pihole
+        emptyDir:
       - name: temp
         emptyDir:
           sizeLimit: 100Mi
