@@ -21,12 +21,16 @@ spec:
         app: pihole-test
     spec:
       affinity:
-        podAntiAffinity:
+        nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
-                matchLabels:
-                  app: pihole-test
-              topologyKey: topology.linode.com/region
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: topology.kubernetes.io/hostname
+                operator: In
+                values:
+                - homelab
+                - tyo-02
+        podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             - labelSelector:
                 matchLabels:
