@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pihole-test-web
+  labels:
+    app: pihole-test
+spec:
+  type: ClusterIP
+  ipFamilyPolicy: PreferDualStack
+  ports:
+  - port: 80
+    targetPort: http
+    protocol: TCP
+    name: http
+  selector:
+    app: pihole-test
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: pihole-test-web
+  labels:
+    app: pihole-test
+spec:
+  type: LoadBalancer
+  ipFamilyPolicy: PreferDualStack
+  externalTrafficPolicy: Local
+  ports:
+  - port: 53
+    targetPort: dns-tcp
+    protocol: TCP
+    name: dns-tcp
+  - port: 53
+    targetPort: dns-udp
+    protocol: UDP
+    name: dns-udp
+  selector:
+    app: pihole-test

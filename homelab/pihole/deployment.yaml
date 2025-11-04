@@ -1,0 +1,84 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: pihole-test
+  name: pihole-test
+spec:
+  replicas: 2
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: pihole-test
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 50%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: pihole-test
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels:
+              app: pihole-test
+              topologyKey: topology.linode.com/region
+      containers:
+      - env:
+        - name: VIRTUAL_HOST
+          value: dns.dekiru.tech
+        - name: FTLCONF_webserver_api_password
+          valueFrom:
+            secretKeyRef:
+              key: password
+              name: pihole-admin
+        - name: FTLCONF_dns_listeningMode
+          value: all
+        image: pihole/pihole:2025.10.3
+        name: pihole
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
+        - containerPort: 53
+          name: dns-tcp
+          protocol: TCP
+        - containerPort: 53
+          name: dns-udp
+          protocol: UDP
+        readinessProbe:
+          exec:
+            command: ["/bin/sh", "-c", "curl localhost/api/info/login"]
+          failureThreshold: 2
+          initialDelaySeconds: 40
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+        livenessProbe:
+          exec:
+            command: ["/bin/sh", "-c", "curl localhost/api/info/login"]
+          failureThreshold: 2
+          initialDelaySeconds: 20
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+        volumeMounts:
+        - mountPath: /etc/pihole
+          name: config
+        - mountPath: /tmp
+          name: temp
+      dnsConfig:
+        nameservers:
+        - 127.0.0.1
+      dnsPolicy: None
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: pihole
+      - name: temp
+        emptyDir:
+          sizeLimit: 100Mi
+          medium: Memory

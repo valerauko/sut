@@ -46,6 +46,9 @@ spec:
           serviceDhcp:
             type: LoadBalancer
           DNS1: false
+    - repoURL: https://github.com/valerauko/sut.git
+      targetRevision: master
+      path: homelab/pihole
 
   destination:
     server: https://kubernetes.default.svc
