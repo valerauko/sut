@@ -20,21 +20,37 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: pihole-test-dns
+  name: pihole-test-dns-udp
   labels:
     app: pihole-test
 spec:
   type: LoadBalancer
-  # ipFamilyPolicy: PreferDualStack
+  ipFamilyPolicy: PreferDualStack
   externalTrafficPolicy: Local
   ports:
   - port: 53543
     targetPort: dns-tcp
     protocol: TCP
     name: dns-tcp
+  selector:
+    app: pihole-test
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: pihole-test-dns-tcp
+  labels:
+    app: pihole-test
+spec:
+  type: LoadBalancer
+  ipFamilyPolicy: PreferDualStack
+  externalTrafficPolicy: Local
+  ports:
   - port: 53543
-    targetPort: dns-udp
-    protocol: UDP
-    name: dns-udp
+    targetPort: dns-tcp
+    protocol: TCP
+    name: dns-tcp
   selector:
     app: pihole-test
