@@ -1,42 +1,42 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: metallb
-  namespace: argo-cd
-  annotations:
-    argocd.argoproj.io/sync-wave: "14"
-spec:
-  project: system
-  sources:
-    - repoURL: https://metallb.github.io/metallb
-      chart: metallb
-      targetRevision: "*"
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: metallb
+#   namespace: argo-cd
+#   annotations:
+#     argocd.argoproj.io/sync-wave: "14"
+# spec:
+#   project: system
+#   sources:
+#     - repoURL: https://metallb.github.io/metallb
+#       chart: metallb
+#       targetRevision: "*"
 
-      helm:
-        releaseName: metallb
+#       helm:
+#         releaseName: metallb
 
-        values: |
-          controller:
-            tolerations:
-              - key: valerauko.net/local
-                operator: Exists
-                effect: NoSchedule
-          speaker:
-            frr:
-              enabled: true
-            tolerations:
-              - key: valerauko.net/local
-                operator: Exists
-                effect: NoSchedule
-    - repoURL: https://github.com/valerauko/sut.git
-      targetRevision: master
-      path: metallb
+#         values: |
+#           controller:
+#             tolerations:
+#               - key: valerauko.net/local
+#                 operator: Exists
+#                 effect: NoSchedule
+#           speaker:
+#             frr:
+#               enabled: true
+#             tolerations:
+#               - key: valerauko.net/local
+#                 operator: Exists
+#                 effect: NoSchedule
+#     - repoURL: https://github.com/valerauko/sut.git
+#       targetRevision: master
+#       path: metallb
 
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: kube-system
+#   destination:
+#     server: https://kubernetes.default.svc
+#     namespace: kube-system
 
-  syncPolicy:
-    automated:
-      selfHeal: true
-      prune: true
+#   syncPolicy:
+#     automated:
+#       selfHeal: true
+#       prune: true
