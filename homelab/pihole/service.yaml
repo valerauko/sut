@@ -28,8 +28,7 @@ spec:
   ipFamilyPolicy: PreferDualStack
   externalTrafficPolicy: Local
   ports:
-  - port: 53543
-    targetPort: dns-udp
+  - targetPort: dns-udp
     protocol: UDP
     name: dns-udp
   selector:
@@ -48,8 +47,7 @@ spec:
   ipFamilyPolicy: PreferDualStack
   externalTrafficPolicy: Local
   ports:
-  - port: 53543
-    targetPort: dns-tcp
+  - targetPort: dns-tcp
     protocol: TCP
     name: dns-tcp
   selector:
