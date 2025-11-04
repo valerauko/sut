@@ -13,6 +13,7 @@ spec:
   strategy:
     rollingUpdate:
       maxUnavailable: 50%
+      maxSurge: 50%
     type: RollingUpdate
   template:
     metadata:
@@ -26,6 +27,11 @@ spec:
                 matchLabels:
                   app: pihole-test
               topologyKey: topology.linode.com/region
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels:
+                  app: pihole-test
+              topologyKey: kubernetes.io/hostname
       containers:
       - env:
         - name: VIRTUAL_HOST
