@@ -30,7 +30,7 @@ spec:
         kubernetes.io/hostname: homelab
       containers:
         - name: server
-          image: ghcr.io/hotio/sonarr:release-4.0.15.2944
+          image: ghcr.io/hotio/sonarr:release-4.0.16.2944
           ports:
             - name: http
               containerPort: 8989
