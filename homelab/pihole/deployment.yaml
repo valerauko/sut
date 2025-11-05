@@ -27,11 +27,11 @@ spec:
                 matchLabels:
                   app: pihole-test
               topologyKey: kubernetes.io/hostname
+      nodeSelector:
+        node-role.kubernetes.io/dns: dns
       containers:
       - name: pihole
         image: pihole/pihole:2025.10.3
-        nodeSelector:
-          node-role.kubernetes.io/dns: dns
         env:
         - name: VIRTUAL_HOST
           value: dns.dekiru.tech
