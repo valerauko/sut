@@ -35,22 +35,22 @@ spec:
         env:
         - name: FTLCONF_dns_upstreams
           valueFrom:
-            configMapRef:
+            configMapKeyRef:
               name: pihole-config
               key: dns.upstreams
         - name: FTLCONF_dns_dnssec
           valueFrom:
-            configMapRef:
+            configMapKeyRef:
               name: pihole-config
               key: dns.dnssec
         - name: FTLCONF_dns_listeningMode
           valueFrom:
-            configMapRef:
+            configMapKeyRef:
               name: pihole-config
               key: dns.listeningMode
         - name: FTLCONF_webserver_domain
           valueFrom:
-            configMapRef:
+            configMapKeyRef:
               name: pihole-config
               key: webserver.domain
         - name: FTLCONF_webserver_api_password
