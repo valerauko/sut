@@ -33,15 +33,31 @@ spec:
       - name: pihole
         image: pihole/pihole:2025.10.3
         env:
-        - name: VIRTUAL_HOST
-          value: dns.dekiru.tech
+        - name: FTLCONF_dns_upstreams
+          valueFrom:
+            configMapRef:
+              name: pihole-config
+              key: dns.upstreams
+        - name: FTLCONF_dns_dnssec
+          valueFrom:
+            configMapRef:
+              name: pihole-config
+              key: dns.dnssec
+        - name: FTLCONF_dns_listeningMode
+          valueFrom:
+            configMapRef:
+              name: pihole-config
+              key: dns.listeningMode
+        - name: FTLCONF_webserver_domain
+          valueFrom:
+            configMapRef:
+              name: pihole-config
+              key: webserver.domain
         - name: FTLCONF_webserver_api_password
           valueFrom:
             secretKeyRef:
-              key: password
               name: pihole-admin
-        - name: FTLCONF_dns_listeningMode
-          value: ALL
+              key: password
         ports:
         - containerPort: 80
           name: http
