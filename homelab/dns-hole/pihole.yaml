@@ -2,14 +2,14 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: pihole-test
-  name: pihole-test
+    app: pihole
+  name: pihole
 spec:
   replicas: 2
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: pihole-test
+      app: pihole
   strategy:
     rollingUpdate:
       maxUnavailable: 1
@@ -18,14 +18,14 @@ spec:
   template:
     metadata:
       labels:
-        app: pihole-test
+        app: pihole
     spec:
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             - labelSelector:
                 matchLabels:
-                  app: pihole-test
+                  app: pihole
               topologyKey: kubernetes.io/hostname
       nodeSelector:
         node-role.kubernetes.io/dns: dns
