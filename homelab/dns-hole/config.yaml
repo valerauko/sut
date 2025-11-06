@@ -12,6 +12,9 @@ data:
         log-queries: yes
         verbosity: 4
 
+        interface: 0.0.0.0@5335
+        interface: ::@5335
+
         access-control: 0.0.0.0/0 allow
         access-control: ::/0 allow
         ip-transparent: yes
