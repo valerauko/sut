@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: pihole-test-web
+  name: pihole-web
   labels:
-    app: pihole-test
+    app: pihole
 spec:
   type: ClusterIP
   ipFamilyPolicy: PreferDualStack
@@ -13,16 +13,16 @@ spec:
     protocol: TCP
     name: http
   selector:
-    app: pihole-test
+    app: pihole
 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: pihole-test-dns
+  name: pihole-dns
   labels:
-    app: pihole-test
+    app: pihole
 spec:
   type: LoadBalancer
   externalTrafficPolicy: Local
@@ -36,4 +36,4 @@ spec:
     protocol: UDP
     name: dns-udp
   selector:
-    app: pihole-test
+    app: pihole
