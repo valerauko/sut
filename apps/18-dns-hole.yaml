@@ -7,10 +7,10 @@ metadata:
     argocd.argoproj.io/sync-wave: "18"
 spec:
   project: system
-  sources:
-    - repoURL: https://github.com/valerauko/sut.git
-      targetRevision: master
-      path: homelab/dns
+  source:
+    repoURL: https://github.com/valerauko/sut.git
+    targetRevision: master
+    path: homelab/dns-hole
 
   destination:
     server: https://kubernetes.default.svc
