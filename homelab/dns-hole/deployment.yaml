@@ -46,6 +46,8 @@ spec:
           value: "true"
         - name: FTLCONF_dns_listeningMode
           value: ALL
+        - name: FTLCONF_misc_etc_dnsmasq_d
+          value: "true"
         - name: FTLCONF_webserver_api_password
           valueFrom:
             secretKeyRef:
@@ -87,7 +89,9 @@ spec:
           timeoutSeconds: 5
         volumeMounts:
         - mountPath: /etc/pihole
-          name: pihole-config
+          name: pihole-folder
+        - mountPath: /etc/dnsmasq.d
+          name: pihole-dnsmasq
         - mountPath: /tmp
           name: temp
 
@@ -135,8 +139,11 @@ spec:
         - 2606:4700:4700::1111
       dnsPolicy: None
       volumes:
-      - name: pihole-config
+      - name: pihole-folder
         emptyDir:
+      - name: pihole-dnsmasq
+        configMap:
+          name: pihole
       - name: temp
         emptyDir:
           sizeLimit: 100Mi
