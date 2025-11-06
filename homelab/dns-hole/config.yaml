@@ -10,6 +10,8 @@ data:
     server:
       log-queries: yes
       verbosity: 1
+
+      local-data: "photos.erdos.tech. 10800 IN A 1.2.3.4"
   local.conf: |
     server:
       access-control-view: 192.168.0.0/24 home-local
