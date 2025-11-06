@@ -31,6 +31,13 @@ spec:
         volumeMounts:
         - name: conf.d
           mountPath: /usr/local/unbound/conf.d
+        ports:
+        - containerPort: 5353
+          name: dns-tcp
+          protocol: TCP
+        - containerPort: 5353
+          name: dns-udp
+          protocol: UDP
         startupProbe:
           exec:
             command: ["/bin/sh", "-c", "/usr/local/unbound/sbin/healthcheck.sh"]

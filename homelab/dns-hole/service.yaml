@@ -27,13 +27,36 @@ spec:
   type: LoadBalancer
   externalTrafficPolicy: Local
   ports:
-  - port: 53543
+  - port: 5353
     targetPort: dns-tcp
     protocol: TCP
     name: dns-tcp
-  - port: 53543
+  - port: 5353
     targetPort: dns-udp
     protocol: UDP
     name: dns-udp
   selector:
     app: pihole
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: unbound-dns
+  labels:
+    app: unbound
+spec:
+  type: LoadBalancer
+  externalTrafficPolicy: Local
+  ports:
+  - port: 5354
+    targetPort: dns-tcp
+    protocol: TCP
+    name: dns-tcp
+  - port: 5354
+    targetPort: dns-udp
+    protocol: UDP
+    name: dns-udp
+  selector:
+    app: unbound
