@@ -44,6 +44,7 @@ data:
         local-data: "photos.erdos.tech. 10800 IN A 192.168.0.240"
   tailscale.conf: |
     server:
+        access-control: 100.0.0.0/8 allow
         access-control-view: 100.0.0.0/8 tailscale
     view:
         name: "tailscale"
