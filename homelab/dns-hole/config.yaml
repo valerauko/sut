@@ -8,7 +8,6 @@ metadata:
 data:
   logging.conf: |
     server:
-      logfile: /dev/stdout
       log-queries: yes
       verbosity: 1
   local.conf: |
