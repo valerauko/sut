@@ -25,3 +25,24 @@ spec:
       containers:
       - name: unbound
         image: madnuttah/unbound:1.24.1-0
+        startupProbe:
+          exec:
+            command: ["/bin/sh", "-c", "/usr/local/unbound/sbin/healthcheck.sh"]
+          failureThreshold: 30
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+        readinessProbe:
+          exec:
+            command: ["/bin/sh", "-c", "/usr/local/unbound/sbin/healthcheck.sh"]
+          failureThreshold: 2
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+        livenessProbe:
+          exec:
+            command: ["/bin/sh", "-c", "/usr/local/unbound/sbin/healthcheck.sh"]
+          failureThreshold: 2
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
