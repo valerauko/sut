@@ -38,6 +38,8 @@ spec:
           value: Asia/Tokyo
         - name: VIRTUAL_HOST
           value: dns.dekiru.tech
+        - name: FTLCONF_dns_cache_size
+          value: "0"
         - name: FTLCONF_dns_upstreams
           value: 127.0.0.1#5335
           # adguard, cloudflare
