@@ -32,10 +32,10 @@ spec:
         - name: config-files
           mountPath: /usr/local/unbound/conf.d
         ports:
-        - containerPort: 5353
+        - containerPort: 5335
           name: dns-tcp
           protocol: TCP
-        - containerPort: 5353
+        - containerPort: 5335
           name: dns-udp
           protocol: UDP
         startupProbe:
