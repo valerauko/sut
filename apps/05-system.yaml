@@ -18,6 +18,8 @@ spec:
     server: https://kubernetes.default.svc
   - namespace: default
     server: https://kubernetes.default.svc
+  - namespace: dns-hole
+    server: https://kubernetes.default.svc
   - namespace: kube-system
     server: https://kubernetes.default.svc
   - namespace: tailscale
