@@ -1,0 +1,26 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: unbound
+  labels:
+    app: unbound
+    role: config
+data:
+  logging.conf: |
+    server:
+      logfile: /dev/stdout
+      log-queries: yes
+      verbosity: 1
+  local.conf: |
+    server:
+      access-control-view: 192.168.0.0/24 home-local
+    view:
+      name: "home-local"
+      local-data: "photos.erdos.tech. 10800 IN A 192.168.0.240"
+  tailscale.conf: |
+    server:
+      access-control-view: 100.0.0.0/8 tailscale
+    view:
+      name: "tailscale"
+      local-data: "photos.erdos.tech. 10800 IN A 100.92.110.126"
+      local-data: "photos.erdos.tech. 10800 IN AAAA fd7a:115c:a1e0::5f01:6e81"

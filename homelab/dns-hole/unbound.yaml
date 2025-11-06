@@ -28,6 +28,9 @@ spec:
         env:
         - name: TZ
           value: Asia/Tokyo
+        volumeMounts:
+        - name: conf.d
+          mountPath: /usr/local/unbound/conf.d
         startupProbe:
           exec:
             command: ["/bin/sh", "-c", "/usr/local/unbound/sbin/healthcheck.sh"]
@@ -49,3 +52,7 @@ spec:
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 5
+      volumes:
+      - name: conf.d
+        configMap:
+          name: unbound
