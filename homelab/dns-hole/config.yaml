@@ -10,13 +10,16 @@ data:
     server:
         logfile: ""
         log-queries: yes
-        verbosity: 4
+        verbosity: 3
 
-        interface: 0.0.0.0@5335
-        interface: ::@5335
+        interface: 0.0.0.0
+        interface: ::0
+        port: 5335
+
+        do-ip6: yes
 
         access-control: 0.0.0.0/0 allow
-        access-control: ::/0 allow
+        access-control: ::0/0 allow
         ip-transparent: yes
 
         local-data: "photos.erdos.tech. 10800 IN A 1.2.3.4"
