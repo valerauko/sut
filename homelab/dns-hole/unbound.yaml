@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: unbound
+  name: unbound
+spec:
+  replicas: 2
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: unbound
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 50%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: unbound
+    spec:
+      nodeSelector:
+        node-role.kubernetes.io/dns: dns
+      containers:
+      - name: unbound
+        image: madnuttah/unbound:1.24.1-0

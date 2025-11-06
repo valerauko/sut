@@ -86,8 +86,6 @@ spec:
           name: config
         - mountPath: /tmp
           name: temp
-      - name: unbound
-        image: madnuttah/unbound:1.24.1-0
       dnsConfig:
         nameservers:
         - 127.0.0.1
