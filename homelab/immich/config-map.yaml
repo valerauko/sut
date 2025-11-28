@@ -10,4 +10,4 @@ data:
   DB_HOSTNAME: postgres.immich.svc.cluster.local
   REDIS_HOSTNAME: redis.immich.svc.cluster.local
   REDIS_PORT: "6379"
-  IMMICH_MACHINE_LEARNING_URL: http://machine-learning.immich.svc.cluster.local:3003
+  IMMICH_MACHINE_LEARNING_URL: http://machine-learning.immich.svc.cluster.local
