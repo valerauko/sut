@@ -50,7 +50,7 @@ spec:
                 name: gluetun
       containers:
         - name: server
-          image: qbittorrentofficial/qbittorrent-nox:5.1.2-2
+          image: qbittorrentofficial/qbittorrent-nox:5.1.4-1
           ports:
             - name: http
               containerPort: 8080
