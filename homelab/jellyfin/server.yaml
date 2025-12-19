@@ -30,7 +30,7 @@ spec:
         kubernetes.io/hostname: homelab
       containers:
         - name: server
-          image: docker.io/jellyfin/jellyfin:10.11.0
+          image: docker.io/jellyfin/jellyfin:10.11.5
           ports:
             - name: http
               containerPort: 8096
