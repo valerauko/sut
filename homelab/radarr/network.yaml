@@ -15,3 +15,31 @@ spec:
   selector:
     app: radarr
     role: server
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: radarr-server
+  labels:
+    app: radarr
+    role: server
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  tls:
+    - hosts:
+        - radarr.dekiru.tech
+      secretName: dekiru-tech-tls
+  rules:
+    - host: radarr.dekiru.tech
+      http:
+        paths:
+          - backend:
+              service:
+                name: radarr
+                port:
+                  name: http
+            path: /
+            pathType: Prefix
