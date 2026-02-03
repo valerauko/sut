@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: radarr
+  labels:
+    app: radarr
+    role: server
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: radarr
+      role: server
+  template:
+    metadata:
+      labels:
+        app: radarr
+        role: server
+    spec:
+      tolerations:
+        - key: valerauko.net/local
+          operator: Exists
+          effect: NoSchedule
+      nodeSelector:
+        kubernetes.io/hostname: homelab
+      containers:
+        - name: server
+          image: ghcr.io/hotio/radarr:release-6.0.4.10291
+          ports:
+            - name: http
+              containerPort: 7878
+          env:
+            - name: TZ
+              value: Asia/Tokyo
+          volumeMounts:
+            - mountPath: /config
+              name: config
+            - mountPath: /data
+              name: data
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: radarr-config
+        - name: data
+          hostPath:
+            path: /media/hinoki
+
+---
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: radarr-config
+  labels:
+    app: radarr
+    role: storage
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: local-path

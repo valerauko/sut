@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: radarr
+  namespace: argo-cd
+  annotations:
+    argocd.argoproj.io/sync-wave: "98"
+spec:
+  project: homelab
+  source:
+    repoURL: https://github.com/valerauko/sut.git
+    targetRevision: master
+    path: homelab/radarr
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: radarr
+
+  syncPolicy:
+    automated:
+      selfHeal: true
