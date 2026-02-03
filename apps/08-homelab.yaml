@@ -22,6 +22,8 @@ spec:
     server: https://kubernetes.default.svc
   - namespace: prowlarr
     server: https://kubernetes.default.svc
+  - namespace: radarr
+    server: https://kubernetes.default.svc
   - namespace: seerr
     server: https://kubernetes.default.svc
   - namespace: sonarr
