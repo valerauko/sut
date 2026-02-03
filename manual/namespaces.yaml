@@ -72,3 +72,10 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: seerr
+
+---
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: radarr
