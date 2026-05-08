@@ -108,6 +108,8 @@ spec:
               name: data
             - mountPath: /tmp
               name: temp
+            - mountPath: /run/mysqld
+              name: mysqld
       dnsPolicy: ClusterFirst
       nodeSelector:
         topology.linode.com/region: ap-northeast
@@ -125,6 +127,8 @@ spec:
             defaultMode: 420
             name: mariadb
         - name: temp
+          emptyDir: {}
+        - name: mysqld
           emptyDir: {}
   updateStrategy:
     type: RollingUpdate
