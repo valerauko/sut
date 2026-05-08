@@ -1,0 +1,147 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app.kubernetes.io/component: primary
+    app.kubernetes.io/instance: mariadb
+    app.kubernetes.io/name: mariadb
+    app.kubernetes.io/version: 11.8.6
+  name: mariadb
+  namespace: default
+spec:
+  persistentVolumeClaimRetentionPolicy:
+    whenDeleted: Retain
+    whenScaled: Retain
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: primary
+      app.kubernetes.io/instance: mariadb
+      app.kubernetes.io/name: mariadb
+  serviceName: mariadb
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: primary
+        app.kubernetes.io/instance: mariadb
+        app.kubernetes.io/name: mariadb
+        app.kubernetes.io/version: 11.8.6
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app.kubernetes.io/name
+                    operator: In
+                    values:
+                      - argocd-application-controller
+              topologyKey: kubernetes.io/hostname
+      automountServiceAccountToken: false
+      containers:
+        - name: mariadb
+          image: docker.io/mariadb:11.8.6-noble
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: MARIADB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: mariadb-root-password
+                  name: mariadb
+            - name: MARIADB_USER
+              value: valerauko
+            - name: MARIADB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: mariadb-password
+                  name: mariadb
+            - name: MARIADB_DATABASE
+              value: valenet
+          ports:
+            - containerPort: 3306
+              name: mysql
+              protocol: TCP
+          livenessProbe:
+            exec:
+              command:
+                - /bin/bash
+                - '-ec'
+                - mariadb-admin status -uroot -p"${MARIADB_ROOT_PASSWORD:-}"
+            failureThreshold: 3
+            initialDelaySeconds: 120
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          readinessProbe:
+            exec:
+              command:
+                - /bin/bash
+                - '-ec'
+                - mariadb-admin ping -uroot -p"${MARIADB_ROOT_PASSWORD:-}"
+            failureThreshold: 3
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            limits:
+              cpu: 375m
+              ephemeral-storage: 2Gi
+              memory: 384Mi
+            requests:
+              cpu: 250m
+              ephemeral-storage: 50Mi
+              memory: 256Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            privileged: false
+            readOnlyRootFilesystem: true
+            runAsGroup: 1001
+            runAsNonRoot: true
+            runAsUser: 1001
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              subPath: data
+              name: data
+            - mountPath: /etc/my.cnf
+              subPath: my.cnf
+              name: config
+      dnsPolicy: ClusterFirst
+      nodeSelector:
+        topology.linode.com/region: ap-northeast
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext:
+        fsGroup: 1001
+        fsGroupChangePolicy: Always
+      serviceAccount: mariadb
+      serviceAccountName: mariadb
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - configMap:
+            defaultMode: 420
+            name: mariadb
+          name: config
+  updateStrategy:
+    type: RollingUpdate
+  volumeClaimTemplates:
+    - apiVersion: v1
+      kind: PersistentVolumeClaim
+      metadata:
+        labels:
+          app.kubernetes.io/component: primary
+          app.kubernetes.io/instance: mariadb
+          app.kubernetes.io/name: mariadb
+        name: data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 15Gi
+        storageClassName: linode-block-storage-retain
+        volumeMode: Filesystem
