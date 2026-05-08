@@ -100,9 +100,9 @@ spec:
                 - ALL
             privileged: false
             readOnlyRootFilesystem: true
-            runAsGroup: 1001
+            runAsGroup: 999
             runAsNonRoot: true
-            runAsUser: 1001
+            runAsUser: 999
           volumeMounts:
             - mountPath: /var/lib/mysql
               name: data
@@ -114,7 +114,7 @@ spec:
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext:
-        fsGroup: 1001
+        fsGroup: 999
         fsGroupChangePolicy: Always
       serviceAccount: mariadb
       serviceAccountName: mariadb
