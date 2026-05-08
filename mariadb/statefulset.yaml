@@ -104,12 +104,8 @@ spec:
             runAsNonRoot: true
             runAsUser: 1001
           volumeMounts:
-            - mountPath: /var/lib/mysql
-              subPath: data
+            - mountPath: /var/lib/mysql/data
               name: data
-            - mountPath: /etc/my.cnf
-              subPath: my.cnf
-              name: config
       dnsPolicy: ClusterFirst
       nodeSelector:
         topology.linode.com/region: ap-northeast
