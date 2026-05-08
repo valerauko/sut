@@ -106,6 +106,8 @@ spec:
           volumeMounts:
             - mountPath: /var/lib/mysql
               name: data
+            - mountPath: /tmp
+              name: temp
       dnsPolicy: ClusterFirst
       nodeSelector:
         topology.linode.com/region: ap-northeast
@@ -122,6 +124,8 @@ spec:
           configMap:
             defaultMode: 420
             name: mariadb
+        - name: temp
+          emptyDir: {}
   updateStrategy:
     type: RollingUpdate
   volumeClaimTemplates:
