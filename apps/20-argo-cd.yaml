@@ -64,6 +64,8 @@ spec:
         repoServer:
           extraArgs:
             - "--parallelismlimit=1"
+          nodeSelector:
+            topology.linode.com/region: ap-northeast
           affinity:
             podAntiAffinity:
               requiredDuringSchedulingIgnoredDuringExecution:
