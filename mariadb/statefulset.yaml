@@ -104,7 +104,7 @@ spec:
             runAsNonRoot: true
             runAsUser: 1001
           volumeMounts:
-            - mountPath: /var/lib/mysql/data
+            - mountPath: /var/lib/mysql
               name: data
       dnsPolicy: ClusterFirst
       nodeSelector:
