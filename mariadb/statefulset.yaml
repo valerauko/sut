@@ -122,26 +122,12 @@ spec:
       serviceAccountName: mariadb
       terminationGracePeriodSeconds: 30
       volumes:
-        - configMap:
+        - name: config
+          configMap:
             defaultMode: 420
             name: mariadb
-          name: config
+        - name: data
+          persistentVolumeClaim:
+            claimName: data-mariadb-0
   updateStrategy:
     type: RollingUpdate
-  volumeClaimTemplates:
-    - apiVersion: v1
-      kind: PersistentVolumeClaim
-      metadata:
-        labels:
-          app.kubernetes.io/component: primary
-          app.kubernetes.io/instance: mariadb
-          app.kubernetes.io/name: mariadb
-        name: data
-      spec:
-        accessModes:
-          - ReadWriteOnce
-        resources:
-          requests:
-            storage: 15Gi
-        storageClassName: linode-block-storage-retain
-        volumeMode: Filesystem
