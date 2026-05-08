@@ -1,63 +1,63 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: mariadb
-  namespace: argo-cd
-  annotations:
-    argocd.argoproj.io/sync-wave: "60"
-spec:
-  project: sites
-  source:
-    repoURL: registry-1.docker.io
-    targetRevision: "19.*"
-    chart: bitnamicharts/mariadb
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: mariadb
+#   namespace: argo-cd
+#   annotations:
+#     argocd.argoproj.io/sync-wave: "60"
+# spec:
+#   project: sites
+#   source:
+#     repoURL: registry-1.docker.io
+#     targetRevision: "19.*"
+#     chart: bitnamicharts/mariadb
 
-    helm:
-      releaseName: mariadb
+#     helm:
+#       releaseName: mariadb
 
-      values: |
-        rbac:
-          create: true
-        auth:
-          existingSecret: mariadb
-          database: valenet
-          username: valerauko
-          forcePassword: true
-        architecture: standalone
-        primary:
-          affinity:
-            podAntiAffinity:
-              requiredDuringSchedulingIgnoredDuringExecution:
-                - labelSelector:
-                    matchExpressions:
-                      - key: app.kubernetes.io/name
-                        operator: In
-                        values:
-                          - argocd-application-controller
-                  topologyKey: kubernetes.io/hostname
-                - labelSelector:
-                    matchExpressions:
-                      - key: app.kubernetes.io/part-of
-                        operator: In
-                        values:
-                          - prometheus
-                      - key: app.kubernetes.io/component
-                        operator: In
-                        values:
-                          - server
-                  topologyKey: kubernetes.io/hostname
-          persistence:
-            storageClass: "linode-block-storage-retain"
-            size: "15Gi"
-          nodeSelector:
-            topology.linode.com/region: ap-northeast
-        metrics:
-          enabled: false
+#       values: |
+#         rbac:
+#           create: true
+#         auth:
+#           existingSecret: mariadb
+#           database: valenet
+#           username: valerauko
+#           forcePassword: true
+#         architecture: standalone
+#         primary:
+#           affinity:
+#             podAntiAffinity:
+#               requiredDuringSchedulingIgnoredDuringExecution:
+#                 - labelSelector:
+#                     matchExpressions:
+#                       - key: app.kubernetes.io/name
+#                         operator: In
+#                         values:
+#                           - argocd-application-controller
+#                   topologyKey: kubernetes.io/hostname
+#                 - labelSelector:
+#                     matchExpressions:
+#                       - key: app.kubernetes.io/part-of
+#                         operator: In
+#                         values:
+#                           - prometheus
+#                       - key: app.kubernetes.io/component
+#                         operator: In
+#                         values:
+#                           - server
+#                   topologyKey: kubernetes.io/hostname
+#           persistence:
+#             storageClass: "linode-block-storage-retain"
+#             size: "15Gi"
+#           nodeSelector:
+#             topology.linode.com/region: ap-northeast
+#         metrics:
+#           enabled: false
 
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: default
+#   destination:
+#     server: https://kubernetes.default.svc
+#     namespace: default
 
-  syncPolicy:
-    automated:
-      selfHeal: true
+#   syncPolicy:
+#     automated:
+#       selfHeal: true
