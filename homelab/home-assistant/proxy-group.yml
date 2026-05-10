@@ -4,4 +4,4 @@ metadata:
   name: tailscale-proxy
 spec:
   type: egress
-  replicas: 2
+  replicas: 1
