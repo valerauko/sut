@@ -19,9 +19,7 @@ spec:
         paths:
           - backend:
               service:
-                # the ExternalName Service doesn't seem to work as documented
-                # name: home-assistant
-                name: ts-home-assistant-vq4vs
+                name: home-assistant
                 port:
                   name: http
             path: /
