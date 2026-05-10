@@ -12,3 +12,15 @@ spec:
     - port: 8123
       protocol: TCP
       name: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: home-assistant-manual
+spec:
+  externalName: homeassistant.tail75ca7b.ts.net
+  type: ExternalName
+  ports:
+    - port: 8123
+      protocol: TCP
+      name: http
