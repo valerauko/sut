@@ -15,6 +15,11 @@ spec:
     helm:
       releaseName: tailscale
 
+      values: |
+        operatorConfig:
+          nodeSelector:
+            topology.linode.com/region: ap-northeast
+
   destination:
     server: https://kubernetes.default.svc
     namespace: tailscale
