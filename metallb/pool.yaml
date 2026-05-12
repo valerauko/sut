@@ -1,7 +1,0 @@
-apiVersion: metallb.io/v1beta1
-kind: IPAddressPool
-metadata:
-  name: basic-ipv4-pool
-spec:
-  addresses:
-    - 203.0.113.200/30
