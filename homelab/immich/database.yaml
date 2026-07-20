@@ -1,23 +1,6 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: postgres
-  labels:
-    app: immich
-    role: db
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 5Gi
-  storageClassName: local-path
-
----
-
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
   name: postgres-v18
   labels:
     app: immich
