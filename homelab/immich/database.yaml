@@ -15,6 +15,23 @@ spec:
 
 ---
 
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: postgres-v18
+  labels:
+    app: immich
+    role: db
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: local-path
+
+---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -64,7 +81,7 @@ spec:
       volumes:
         - name: database
           persistentVolumeClaim:
-            claimName: postgres
+            claimName: postgres-v18
 
 ---
 
