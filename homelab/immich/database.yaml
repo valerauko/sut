@@ -15,6 +15,22 @@ spec:
 
 ---
 
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: postgres-18
+  labels:
+    app: immich
+    role: db
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: local-path
+
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -46,7 +62,7 @@ spec:
         kubernetes.io/hostname: homelab
       containers:
         - name: postgres
-          image: pgautoupgrade/pgautoupgrade:18-trixie
+          image: ghcr.io/immich-app/postgres:18-vectorchord1.1.1-pgvector0.8.5@sha256:e1c25329747ba6fec8b0cc0817be95713916a78be6654ba544165c0897aadf2c
           ports:
             - name: postgres
               containerPort: 5432
@@ -64,7 +80,7 @@ spec:
       volumes:
         - name: database
           persistentVolumeClaim:
-            claimName: postgres
+            claimName: postgres-18
 
 ---
 
