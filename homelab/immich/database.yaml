@@ -15,22 +15,6 @@ spec:
 
 ---
 
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: postgres-18
-  labels:
-    app: immich
-    role: db
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 5Gi
-  storageClassName: local-path
-
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -76,11 +60,11 @@ spec:
               value: '--data-checksums'
           volumeMounts:
             - name: database
-              mountPath: /var/lib/postgresql
+              mountPath: /var/lib/postgresql/18/docker
       volumes:
         - name: database
           persistentVolumeClaim:
-            claimName: postgres-18
+            claimName: postgres
 
 ---
 
