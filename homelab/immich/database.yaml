@@ -46,7 +46,7 @@ spec:
         kubernetes.io/hostname: homelab
       containers:
         - name: postgres
-          image: ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0@sha256:bcf63357191b76a916ae5eb93464d65c07511da41e3bf7a8416db519b40b1c23
+          image: ghcr.io/immich-app/postgres:18-vectorchord1.1.1-pgvector0.8.5@sha256:e1c25329747ba6fec8b0cc0817be95713916a78be6654ba544165c0897aadf2c
           ports:
             - name: postgres
               containerPort: 5432
@@ -60,7 +60,7 @@ spec:
               value: '--data-checksums'
           volumeMounts:
             - name: database
-              mountPath: /var/lib/postgresql/data
+              mountPath: /var/lib/postgresql
       volumes:
         - name: database
           persistentVolumeClaim:
