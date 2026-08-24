@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: get-u7s
+  namespace: argo-cd
+  annotations:
+    argocd.argoproj.io/sync-wave: "85"
+spec:
+  project: sites
+  source:
+    repoURL: https://github.com/litehop/u7s.git
+    targetRevision: main
+    path: deploy/get-u7s
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+
+  syncPolicy:
+    automated:
+      selfHeal: true
