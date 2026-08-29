@@ -25,7 +25,6 @@ spec:
           post_max_size: "60M"
           memory_limit: "64M"
           max_execution_time: "60"
-          process.max: "2"
         ingress:
           enabled: true
           annotations:
