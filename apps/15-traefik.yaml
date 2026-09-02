@@ -29,6 +29,12 @@ spec:
             enabled: true
         rbac:
           enabled: true
+        nodeSelector:
+          topology.linode.com/region: ap-northeast
+        tolerations:
+          - key: CriticalAddonsOnly
+            operator: Exists
+            effect: NoSchedule
         deployment:
           podAnnotations:
             prometheus.io/scrape: "true"
