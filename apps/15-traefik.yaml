@@ -59,19 +59,20 @@ spec:
             http3:
               enabled: true
               advertisedPort: 443
-            tls:
-              enabled: true
-              domains:
-                - main: "*.valerauko.net"
-                - sans:
-                    - "valerauko.net"
-                - main: "*.dekiru.tech"
-                - sans:
-                    - "dekiru.tech"
-                - main: "*.erdos.tech"
-                - sans:
-                    - "erdos.tech"
-                - main: "notredrevie.ws"
+            http:
+              tls:
+                enabled: true
+                domains:
+                  - main: "*.valerauko.net"
+                  - sans:
+                      - "valerauko.net"
+                  - main: "*.dekiru.tech"
+                  - sans:
+                      - "dekiru.tech"
+                  - main: "*.erdos.tech"
+                  - sans:
+                      - "erdos.tech"
+                  - main: "notredrevie.ws"
         metrics:
           prometheus:
             addServicesLabels: true
