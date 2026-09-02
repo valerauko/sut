@@ -50,11 +50,12 @@ spec:
               secretName: dekiru-tech-tls
         ports:
           web:
-            redirections:
-              entryPoint:
-                to: websecure
-                scheme: https
-                permanent: true
+            http:
+              redirections:
+                entryPoint:
+                  to: websecure
+                  scheme: https
+                  permanent: true
           websecure:
             http3:
               enabled: true
