@@ -16,17 +16,12 @@ spec:
       releaseName: traefik
 
       values: |
-        globalArguments:
+        additionalArguments:
           - "--global.checknewversion"
         providers:
           kubernetesIngress:
             publishedService:
               enabled: true
-        logs:
-          general:
-            level: INFO
-          access:
-            enabled: true
         rbac:
           enabled: true
         nodeSelector:
@@ -50,6 +45,8 @@ spec:
               secretName: dekiru-tech-tls
         ports:
           web:
+            observability:
+              accessLogs: true
             http:
               redirections:
                 entryPoint:
@@ -61,6 +58,8 @@ spec:
               enabled: true
               advertisedPort: 443
             http:
+              observability:
+                accessLogs: true
               tls:
                 enabled: true
                 domains:
