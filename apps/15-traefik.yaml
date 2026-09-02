@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://helm.traefik.io/traefik
     chart: traefik
-    targetRevision: "37.*"
+    targetRevision: "41.*"
 
     helm:
       releaseName: traefik
