@@ -9,7 +9,8 @@ spec:
   project: system
   source:
     repoURL: https://github.com/linode/linode-blockstorage-csi-driver.git
-    targetRevision: v1.1.4
+    # linode CSI is useless but upgrading is even worse, just give up
+    targetRevision: v0.8.5
     path: helm-chart/csi-driver
 
     helm:
