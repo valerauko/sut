@@ -29,9 +29,6 @@ spec:
                 secretKeyRef:
                   name: linode
                   key: token
-        controller:
-          nodeSelector:
-            topology.linode.com/region: ap-northeast
 
   destination:
     server: https://kubernetes.default.svc
