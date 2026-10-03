@@ -49,4 +49,4 @@ spec:
 
   syncPolicy:
     automated:
-      selfHeal: true
+      selfHeal: false
