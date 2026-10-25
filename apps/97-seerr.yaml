@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/seerr-team/seerr
     path: charts/seerr-chart
-    targetRevision: fa58c30
+    targetRevision: "0110e75"
 
     helm:
       releaseName: seerr
