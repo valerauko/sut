@@ -46,7 +46,7 @@ spec:
         kubernetes.io/hostname: homelab
       containers:
         - name: postgres
-          image: ghcr.io/immich-app/postgres:18-vectorchord1.1.1-pgvector0.8.5@sha256:e1c25329747ba6fec8b0cc0817be95713916a78be6654ba544165c0897aadf2c
+          image: ghcr.io/immich-app/postgres:18-vectorchord1.1.1-pgvector0.8.5@sha256:a20e21841b21b9c009daf572c844ffedfaef75fce51287bbf080edf171ef0834
           ports:
             - name: postgres
               containerPort: 5432

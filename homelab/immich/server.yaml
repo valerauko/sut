@@ -29,7 +29,7 @@ spec:
         kubernetes.io/hostname: homelab
       containers:
         - name: server
-          image: ghcr.io/immich-app/immich-server:v3.0.3
+          image: ghcr.io/immich-app/immich-server:v3.3.5
           ports:
             - name: http
               containerPort: 2283
